@@ -1,0 +1,27 @@
+fieldset {
+  appearance: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  &:first-of-type {
+    margin-top: 60px;
+  }
+}
+
+legend {
+  width: 100%;
+  background: var(--primary);
+  color: var(--secondary);
+  border-top: 3px solid var(--primary);
+  padding: 10px;
+  margin: 0 0 16px 0;
+  box-sizing: border-box;
+  font-weight: 800;
+  font-size: 1.25rem;
+}
+
+.fieldset-content {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}

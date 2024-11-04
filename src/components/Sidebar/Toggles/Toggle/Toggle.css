@@ -1,0 +1,56 @@
+.toggle-box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+toggle-box:last-of-type {
+  margin-bottom: 0;
+}
+
+.toggle-box .icon {
+  font-size: 1.3rem;
+}
+
+.toggle {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+  margin: 0;
+}
+
+.toggle + label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 50px;
+  height: 25px;
+  background: var(--primary);
+  display: block;
+  border-radius: 25px;
+  position: relative;
+  margin: 0 7px;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 13.5px;
+    height: 13.5px;
+    background: var(--secondary);
+    border-radius: 45px;
+    transition: 0.3s;
+  }
+}
+
+.toggle:checked + label {
+  background: var(--primary);
+  &::after {
+    left: calc(100% - 5px);
+    transform: translateX(-100%);
+  }
+}
+
+.toggle + label:active:after {
+  width: 130px;
+}
