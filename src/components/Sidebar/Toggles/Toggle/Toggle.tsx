@@ -6,6 +6,7 @@ type ToggleProps = {
   toggleId: string
   iconLeft: React.ReactNode
   iconRight: React.ReactNode
+  handleBookValueChange: (value: string, key: string) => void
 }
 
 export default function Toggle({
@@ -13,8 +14,15 @@ export default function Toggle({
   toggleId,
   iconLeft,
   iconRight,
+  handleBookValueChange,
 }: ToggleProps) {
   const [isChecked, setIsChecked] = useState(false)
+
+  function handleToggleChange(): void {
+    const newValue = !isChecked
+    setIsChecked(newValue)
+    handleBookValueChange(newValue.toString(), toggleId.toLowerCase())
+  }
 
   return (
     <div className='toggle-box'>
@@ -22,8 +30,9 @@ export default function Toggle({
       <input
         className='toggle'
         type='checkbox'
-        value={isChecked.toString()}
-        onChange={() => setIsChecked(!isChecked)}
+        value={toggleId}
+        checked={isChecked}
+        onChange={handleToggleChange}
         id={toggleId}
       />
       <label htmlFor={toggleId}>{label}</label>

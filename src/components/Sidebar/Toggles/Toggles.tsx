@@ -10,31 +10,38 @@ import {
   faArrowUpAZ,
   faArrowDownAZ,
 } from '@fortawesome/free-solid-svg-icons'
-import { useId } from 'react'
+// import { useId } from 'react'
 
-export default function Toggles() {
-  const id = useId()
-  const toggleId = `${id}-toggle`
+type TogglesProps = {
+  handleBookValueChange: (value: string, key: string) => void
+}
+
+export default function Toggles({ handleBookValueChange }: TogglesProps) {
+  // const id = useId()
+  // const toggleId = `${id}-toggle`
 
   return (
     <Fieldset legend='Toggles'>
       <Toggle
         label='Toggle dark/light theme'
-        toggleId={toggleId}
+        toggleId='theme'
         iconLeft={<FontAwesomeIcon className='icon' icon={faSun} />}
         iconRight={<FontAwesomeIcon className='icon' icon={faMoon} />}
+        handleBookValueChange={handleBookValueChange}
       />
       <Toggle
         label='Toggle grid/list view'
-        toggleId={toggleId}
+        toggleId='view'
         iconLeft={<FontAwesomeIcon className='icon' icon={faTableCellsLarge} />}
         iconRight={<FontAwesomeIcon className='icon' icon={faList} />}
+        handleBookValueChange={handleBookValueChange}
       />
       <Toggle
         label='Toggle ascending/descending sort'
-        toggleId={toggleId}
+        toggleId='order'
         iconLeft={<FontAwesomeIcon className='icon' icon={faArrowDownAZ} />}
         iconRight={<FontAwesomeIcon className='icon' icon={faArrowUpAZ} />}
+        handleBookValueChange={handleBookValueChange}
       />
     </Fieldset>
   )

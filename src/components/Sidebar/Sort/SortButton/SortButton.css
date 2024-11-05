@@ -1,0 +1,54 @@
+.sort-box {
+  position: relative;
+  width: auto;
+  margin-bottom: 16px;
+  border: var(--border-thin);
+}
+
+.sort-radio {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+  margin: 0;
+  position: absolute;
+}
+
+.sort-radio + label {
+  width: 100%;
+  background: var(--secondary);
+  padding: 10px 16px;
+  display: block;
+  box-sizing: border-box;
+  /* border-top: 3px solid var(--primary); */
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--primary);
+  background-color: var(--secondary);
+  transition: all 300ms;
+}
+
+.sort-radio + label:hover,
+.sort-radio + label:hover i {
+  background-color: var(--hover);
+  color: var(--primary);
+  /* color: var(--secondary); */
+}
+
+.sort-radio:checked + label,
+.sort-radio:checked + label i {
+  /* background: var(--set); */
+  color: var(--secondary);
+  background-color: var(--primary);
+}
+
+.sort-radio:checked + label i {
+  background: transparent;
+}
+
+.sort-radio + label i {
+  margin-right: 16px;
+}
+
+.sort-icon {
+  margin-right: 16px;
+}

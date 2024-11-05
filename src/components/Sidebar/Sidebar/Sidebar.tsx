@@ -1,13 +1,19 @@
 import './Sidebar.css'
 import Header from '../Header/Header'
 import Toggles from '../Toggles/Toggles'
+import SortBox from '../Sort/SortBox'
 
-export default function Sidebar() {
+type SidebarProps = {
+  handleBookValueChange: (value: string, key: string) => void
+}
+
+export default function Sidebar({ handleBookValueChange }: SidebarProps) {
   return (
     <>
       <Header />
       <div className='sidebar'>
-        <Toggles />
+        <Toggles handleBookValueChange={handleBookValueChange} />
+        <SortBox />
       </div>
     </>
   )
