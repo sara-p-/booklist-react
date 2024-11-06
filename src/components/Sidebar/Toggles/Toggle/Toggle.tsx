@@ -6,7 +6,7 @@ type ToggleProps = {
   toggleId: string
   iconLeft: React.ReactNode
   iconRight: React.ReactNode
-  handleBookValueChange: (value: string, key: string) => void
+  handleValueChange: (value: string | boolean, key: string) => void
 }
 
 export default function Toggle({
@@ -14,14 +14,14 @@ export default function Toggle({
   toggleId,
   iconLeft,
   iconRight,
-  handleBookValueChange,
+  handleValueChange,
 }: ToggleProps) {
-  const [isChecked, setIsChecked] = useState(false)
+  const [isChecked, setIsChecked] = useState<boolean>(false)
 
   function handleToggleChange(): void {
     const newValue = !isChecked
     setIsChecked(newValue)
-    handleBookValueChange(newValue.toString(), toggleId.toLowerCase())
+    handleValueChange(newValue, toggleId.toLowerCase())
   }
 
   return (

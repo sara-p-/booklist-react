@@ -1,25 +1,20 @@
 import { useState } from 'react'
 import './App.css'
 import Sidebar from './components/Sidebar/Sidebar/Sidebar'
+import { DEFAULT_VALUES, DefaultValuesType } from './global/global-variables'
 
 function App() {
-  const [bookValue, setBookValue] = useState<{
-    theme: string
-    view: string
-    order: string
-    sort: string
-  }>({ theme: 'light', view: 'grid', order: 'asc', sort: 'series' })
+  const [bookValue, setBookValue] = useState<DefaultValuesType>(DEFAULT_VALUES)
 
-  function handleBookValueChange(value: string, key: string): void {
-    const newValue = { ...bookValue }
-    newValue[key as keyof typeof newValue] = value
+  function handleValueChange(value: string | boolean, key: string): void {
+    const newValue = { ...bookValue, [key]: value }
     setBookValue(newValue)
     console.log(newValue)
   }
 
   return (
     <div className='box'>
-      <Sidebar handleBookValueChange={handleBookValueChange} />
+      <Sidebar handleValueChange={handleValueChange} />
       <div className='main'></div>
     </div>
   )

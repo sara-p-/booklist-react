@@ -11,12 +11,17 @@ import {
 import SortButton from './SortButton/SortButton'
 import { useState } from 'react'
 
-export default function SortBox() {
+type SortBoxProps = {
+  handleValueChange: (value: string | boolean, key: string) => void
+}
+
+export default function SortBox({ handleValueChange }: SortBoxProps) {
   const [sortValue, setSortValue] = useState<string>('series')
 
   function handleSortChange(event: React.ChangeEvent<HTMLInputElement>) {
     const value = event.target.value
     setSortValue(value)
+    handleValueChange(value, 'sort')
   }
 
   return (
