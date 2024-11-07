@@ -7,7 +7,7 @@ import {
   BookType,
 } from './global/global-variables'
 import useBookData from './hooks/UseBookData'
-import { updateBookList } from './utils/books'
+import { updateBookList } from './utils/update-book-list'
 import Book from './components/Main/Book/Book'
 
 function App() {
