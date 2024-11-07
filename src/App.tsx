@@ -13,11 +13,16 @@ import Book from './components/Main/Book/Book'
 function App() {
   const [bookSettings, setBookSettings] =
     useState<DefaultValuesType>(DEFAULT_VALUES)
+  const [contentClass, setContentClass] = useState<
+    'content grid' | 'content list'
+  >('content grid')
   const { data } = useBookData('../../api/booklist.json')
 
+  // Update the bookSettings state
   function handleValueChange(value: string | boolean, key: string): void {
     const newValue = { ...bookSettings, [key]: value }
     setBookSettings(newValue)
+    setContentClass(newValue.view ? 'content list' : 'content grid')
   }
 
   // Update the bookList based on the settings
@@ -28,10 +33,19 @@ function App() {
       <Sidebar handleValueChange={handleValueChange} />
       <div className='main'>
         <div className='wrapper'>
-          <div className='content'>
+          <div className={contentClass}>
             {bookList &&
               bookList.map((book: BookType) => (
-                <Book key={book.id} title={book.title} />
+                <Book
+                  key={book.id}
+                  title={book.title}
+                  author={book.author}
+                  series={book.series}
+                  number={book.number}
+                  year={book.year}
+                  length={book.length}
+                  rating={book.rating}
+                />
               ))}
           </div>
         </div>
