@@ -1,0 +1,125 @@
+.filter-box {
+  width: auto;
+  margin-bottom: 16px;
+  border: 3px solid var(--primary);
+  border-top: 7px solid var(--primary);
+}
+
+.filter-button {
+  width: 100%;
+  background: var(--secondary);
+  padding: 10px 16px;
+  display: block;
+  box-sizing: border-box;
+  border-top: 3px solid var(--primary);
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: left;
+  border: none;
+  border-top: 3px solid var(--primary);
+  border-bottom: none;
+  cursor: pointer;
+  appearance: none;
+  color: var(--primary);
+  transition: background-color 300ms, color 300ms;
+}
+
+.filter-button.set {
+  background-color: var(--set);
+  color: var(--secondary);
+}
+.filter-button.set i {
+  color: var(--secondary);
+}
+
+.filter-button-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+}
+
+.filter-button-value {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin-right: 8px;
+}
+
+.selected-label {
+  margin-right: 8px;
+}
+
+.selected-option {
+  width: 139px;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-right: 8px;
+  /* height: 18.5px; */
+  text-overflow: ellipsis;
+}
+
+/* OPTIONS */
+
+.filter-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  height: 0;
+  overflow: hidden;
+}
+
+.filter-box.active > .filter-list {
+  height: auto;
+  max-height: 200px;
+  overflow: scroll;
+}
+
+.filter-box.active > .filter-button {
+  border-bottom: 3px solid var(--primary);
+  /* background-color: var(--active); */
+}
+
+.filter-box.active > .filter-button i {
+  transform: rotate(180deg);
+}
+
+.filter-radio {
+  position: absolute;
+  left: 0;
+  opacity: 0;
+}
+
+.filter-radio + label {
+  padding: 10px 16px;
+  /* transition: all 100ms; */
+  color: var(--primary);
+  background-color: var(--secondary);
+  cursor: pointer;
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+}
+
+.filter-radio + label:hover {
+  background-color: var(--hover);
+  /* color: var(--secondary); */
+}
+
+.filter-option {
+  border-top: 3px solid var(--primary);
+}
+
+.filter-option:first-of-type {
+  border-top: none;
+}
+
+.filter-option:last-of-type {
+  border-bottom: var();
+}
+
+.filter-option .filter-radio:checked + label {
+  background-color: var(--set);
+  color: var(--secondary);
+}

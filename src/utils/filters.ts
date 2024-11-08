@@ -1,4 +1,4 @@
-import { BookType } from '../global/global-variables'
+import { BookType } from '../global/types'
 
 // Function to filter an array by a key and value
 export function filterArray(

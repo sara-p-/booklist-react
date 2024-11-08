@@ -1,4 +1,4 @@
-import { BookType } from '../global/global-variables'
+import { BookType } from '../global/types'
 
 // Function to pull out duplicates from an array so that each entry only appears once
 export function removeDuplicates(array: string[]) {
@@ -18,4 +18,9 @@ export function moveAndSortEmptySeries(
   const emptySeries = array.filter((obj) => obj.sort === '')
 
   return [...array.filter((obj) => obj.sort !== ''), ...emptySeries]
+}
+
+// Function to remove duplicates and sort an array
+export function simplifyAndSort(array: string[]) {
+  return removeDuplicates(array).sort()
 }

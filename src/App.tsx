@@ -1,11 +1,8 @@
 import { useState } from 'react'
 import './App.css'
 import Sidebar from './components/Sidebar/Sidebar/Sidebar'
-import {
-  DEFAULT_VALUES,
-  DefaultValuesType,
-  BookType,
-} from './global/global-variables'
+import { DEFAULT_VALUES } from './global/global-variables'
+import { DefaultValuesType, BookType } from './global/types'
 import useBookData from './hooks/UseBookData'
 import { updateBookList } from './utils/update-book-list'
 import Book from './components/Main/Book/Book'
@@ -30,7 +27,7 @@ function App() {
 
   return (
     <div className='box'>
-      <Sidebar handleValueChange={handleValueChange} />
+      <Sidebar handleValueChange={handleValueChange} bookList={bookList} />
       <div className='main'>
         <div className='wrapper'>
           <div className={contentClass}>
