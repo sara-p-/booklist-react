@@ -3,9 +3,16 @@ import { useId } from 'react'
 type FilterOptionProps = {
   group: string
   value: string
+  handleOptionClick: (e: React.ChangeEvent<HTMLInputElement>) => void
+  isOptionChecked: boolean
 }
 
-export default function FilterOption({ group, value }: FilterOptionProps) {
+export default function FilterOption({
+  group,
+  value,
+  handleOptionClick,
+  isOptionChecked,
+}: FilterOptionProps) {
   const id = useId()
   const radioId = `${id}-${group}`
 
@@ -17,6 +24,8 @@ export default function FilterOption({ group, value }: FilterOptionProps) {
         type='radio'
         name={group}
         value={value}
+        onChange={handleOptionClick}
+        checked={isOptionChecked}
       />
       <label htmlFor={radioId} className='filter-label'>
         {value}

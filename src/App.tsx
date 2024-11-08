@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import Sidebar from './components/Sidebar/Sidebar/Sidebar'
 import { DEFAULT_VALUES } from './global/global-variables'
@@ -10,9 +10,11 @@ import Book from './components/Main/Book/Book'
 function App() {
   const [bookSettings, setBookSettings] =
     useState<DefaultValuesType>(DEFAULT_VALUES)
+  const [bookList, setBookList] = useState<BookType[]>([])
   const [contentClass, setContentClass] = useState<
     'content grid' | 'content list'
   >('content grid')
+
   const { data } = useBookData('../../api/booklist.json')
 
   // Update the bookSettings state
@@ -23,7 +25,11 @@ function App() {
   }
 
   // Update the bookList based on the settings
-  const bookList = data ? updateBookList(data, bookSettings) : []
+  useEffect(() => {
+    if (data) {
+      setBookList(updateBookList(data, bookSettings))
+    }
+  }, [data, bookSettings])
 
   return (
     <div className='box'>

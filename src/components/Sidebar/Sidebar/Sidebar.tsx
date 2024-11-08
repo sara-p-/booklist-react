@@ -16,7 +16,7 @@ export default function Sidebar({ handleValueChange, bookList }: SidebarProps) {
       <div className='sidebar'>
         <Toggles handleValueChange={handleValueChange} />
         <SortBox handleValueChange={handleValueChange} />
-        <Filters bookList={bookList} />
+        <Filters bookList={bookList} handleValueChange={handleValueChange} />
       </div>
     </>
   )

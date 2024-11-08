@@ -3,17 +3,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 type FilterButtonProps = {
   label: string
-  toggleActive: () => void
+  handleButtonClick: () => void
   isActive: boolean
 }
 
 export default function FilterButton({
   label,
-  toggleActive,
+  handleButtonClick,
   isActive,
 }: FilterButtonProps) {
   return (
-    <button className='filter-button' onClick={toggleActive}>
+    <button className='filter-button' onClick={handleButtonClick}>
       <span className='filter-button-box'>
         <span className='filter-button-value'>{label}</span>
         {isActive ? (

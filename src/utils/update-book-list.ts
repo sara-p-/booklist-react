@@ -1,16 +1,25 @@
-import { BookType, DefaultValuesType } from '../global/global-variables'
-import { filterArray } from './filters'
+import { BookType, DefaultValuesType } from '../global/types'
+import { filterArray } from './filter-utils'
 import { moveAndSortEmptySeries, removeDuplicates } from './array-utils'
 // Function to filter/sort the bookList based on what filters are selected
 export function updateBookList(
   array: BookType[],
-  { order, sort }: DefaultValuesType
+  { order, sort, author, series }: DefaultValuesType
 ) {
   let bookList = array
 
   // ******************** SHOW/HIDE *************************//
   // filter the books based on which ones should be shown and which ones should be hidden
   bookList = filterArray(bookList, 'show', 'show')
+
+  // ******************** FILTERS *************************//
+  // If a filter value is present, filter the main array by that value
+  if (author !== '') {
+    bookList = filterArray(bookList, 'author', author)
+  }
+  if (series !== '') {
+    bookList = filterArray(bookList, 'series', series)
+  }
 
   // ******************** SORTING *********************//
   // Make an array of the item to group by (example: Series)
