@@ -4,7 +4,7 @@ import { moveAndSortEmptySeries, removeDuplicates } from './array-utils'
 // Function to filter/sort the bookList based on what filters are selected
 export function updateBookList(
   array: BookType[],
-  { order, sort, author, series, tags }: DefaultValuesType
+  { order, sort }: DefaultValuesType
 ) {
   let bookList = array
 

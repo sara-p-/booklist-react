@@ -5,10 +5,10 @@ type BookProps = {
   title: string
   author: string
   series: string
-  number: number
-  year: number
-  length: number
-  rating: number
+  number: string
+  year: string
+  length: string
+  rating: string
 }
 
 export default function Book({
