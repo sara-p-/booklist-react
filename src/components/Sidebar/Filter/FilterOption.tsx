@@ -1,20 +1,29 @@
-import { useId } from 'react'
+import { useId, useState } from 'react'
 
 type FilterOptionProps = {
   group: string
   value: string
-  handleOptionClick: (e: React.ChangeEvent<HTMLInputElement>) => void
-  isOptionChecked: boolean
+  handleOptionChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export default function FilterOption({
   group,
   value,
-  handleOptionClick,
-  isOptionChecked,
+  handleOptionChange,
 }: FilterOptionProps) {
+  const [isChecked, setIsChecked] = useState<boolean>(false)
   const id = useId()
   const radioId = `${id}-${group}`
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
+    e.preventDefault()
+    setIsChecked(!isChecked)
+    handleOptionChange(e)
+    console.log({
+      value: e.currentTarget.value,
+      isChecked: e.currentTarget.checked,
+    })
+  }
 
   return (
     <li className='filter-option'>
@@ -24,8 +33,8 @@ export default function FilterOption({
         type='radio'
         name={group}
         value={value}
-        onChange={handleOptionClick}
-        checked={isOptionChecked}
+        onChange={handleChange}
+        checked={isChecked}
       />
       <label htmlFor={radioId} className='filter-label'>
         {value}

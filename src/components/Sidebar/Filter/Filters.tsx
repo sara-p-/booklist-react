@@ -5,14 +5,18 @@ import Fieldset from '../Fieldset/Fieldset'
 import Filter from './Filter'
 
 type FiltersProps = {
-  bookList: BookType[]
   handleValueChange: (value: string | boolean, key: string) => void
+  data: BookType[]
 }
 
-export default function Filters({ bookList, handleValueChange }: FiltersProps) {
+export default function Filters({ handleValueChange, data }: FiltersProps) {
   // Remove duplicates from array and then sort it alphabetically
-  const authors: string[] = simplifyAndSort(bookList.map((book) => book.author))
-  const series: string[] = simplifyAndSort(bookList.map((book) => book.series))
+  const authors: string[] = data
+    ? simplifyAndSort(data.map((book) => book.author))
+    : []
+  const series: string[] = data
+    ? simplifyAndSort(data.map((book) => book.series))
+    : []
 
   return (
     <Fieldset legend='filters'>

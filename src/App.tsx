@@ -33,7 +33,11 @@ function App() {
 
   return (
     <div className='box'>
-      <Sidebar handleValueChange={handleValueChange} bookList={bookList} />
+      <Sidebar
+        handleValueChange={handleValueChange}
+        bookList={bookList}
+        data={data}
+      />
       <div className='main'>
         <div className='wrapper'>
           <div className={contentClass}>

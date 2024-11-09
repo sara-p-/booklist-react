@@ -13,10 +13,9 @@ export default function Filter({
   options,
   handleValueChange,
 }: FilterProps) {
-  const [isActive, setIsActive] = useState(false)
+  const [isDropdownActive, setIsDropdownActive] = useState(false)
   const [theClasses, setTheClasses] = useState('filter-box')
   const [newLabel, setNewLabel] = useState(label)
-  const [isOptionChecked, setIsOptionChecked] = useState(false)
 
   const newOptions = options.map((option) => {
     const theKey = crypto.randomUUID()
@@ -24,34 +23,36 @@ export default function Filter({
   })
 
   function handleButtonClick() {
-    const newState = !isActive
-    // If the filter is open, remove the new label and close the filter
+    const newState = !isDropdownActive
+    // If the filter is open (when the user clicks), remove the new label and close the filter
     if (!newState) {
       setNewLabel(label)
-      setIsOptionChecked(false)
       handleValueChange('', label)
     }
-    setIsActive(newState)
+    setIsDropdownActive(newState)
     const newClass = newState ? 'filter-box active' : 'filter-box'
     setTheClasses(newClass)
   }
 
-  function handleOptionClick(e: React.ChangeEvent<HTMLInputElement>) {
-    if (isActive) {
-      const value = e.currentTarget.value
+  function handleOptionChange(e: React.ChangeEvent<HTMLInputElement>) {
+    // e.preventDefault()
+    const value = e.currentTarget.value
+    handleValueChange(value, label)
+    // setIsOptionChecked(!isOptionChecked)
+
+    // If the filter is currently active and the user clicks an option
+    if (isDropdownActive) {
       setNewLabel(value)
-      handleValueChange(value, label)
     } else {
       setNewLabel(label)
     }
-    setIsOptionChecked(!isOptionChecked)
   }
 
   return (
     <div className={theClasses}>
       <FilterButton
         label={newLabel}
-        isActive={isActive}
+        isActive={isDropdownActive}
         handleButtonClick={handleButtonClick}
       />
       <ul className='filter-list'>
@@ -60,8 +61,7 @@ export default function Filter({
             key={option.key}
             group={label}
             value={option.value}
-            handleOptionClick={handleOptionClick}
-            isOptionChecked={isOptionChecked}
+            handleOptionChange={handleOptionChange}
           />
         ))}
       </ul>

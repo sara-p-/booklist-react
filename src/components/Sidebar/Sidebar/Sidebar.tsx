@@ -7,16 +7,17 @@ import { BookType } from '../../../global/types'
 type SidebarProps = {
   handleValueChange: (value: string | boolean, key: string) => void
   bookList: BookType[]
+  data: BookType[]
 }
 
-export default function Sidebar({ handleValueChange, bookList }: SidebarProps) {
+export default function Sidebar({ handleValueChange, data }: SidebarProps) {
   return (
     <>
       <Header />
       <div className='sidebar'>
         <Toggles handleValueChange={handleValueChange} />
         <SortBox handleValueChange={handleValueChange} />
-        <Filters bookList={bookList} handleValueChange={handleValueChange} />
+        <Filters handleValueChange={handleValueChange} data={data} />
       </div>
     </>
   )
