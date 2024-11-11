@@ -18,9 +18,12 @@ function App() {
   const { data } = useBookData('../../api/booklist.json')
 
   const setBooks = useBooksStore((state) => state.setBooks)
-  const books = setBooks(data)
+  const books = useBooksStore((state) => state.books)
 
-  console.log(setBooks)
+  // const setBooks = useBooksStore((state) => state.setBooks)
+  // const books = data ? setBooks(data) : []
+
+  console.log({ books })
 
   // Update the bookSettings state
   function handleValueChange(value: string | boolean, key: string): void {
@@ -32,9 +35,14 @@ function App() {
   // Update the bookList based on the settings
   useEffect(() => {
     if (data) {
-      setBookList(updateBookList(data, bookSettings))
+      setBooks(data)
     }
-  }, [data, bookSettings])
+  }, [data, setBooks])
+  // useEffect(() => {
+  //   if (data) {
+  //     setBookList(updateBookList(data, bookSettings))
+  //   }
+  // }, [data, bookSettings])
 
   return (
     <div className='box'>
