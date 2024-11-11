@@ -3,9 +3,10 @@ import './App.css'
 import Sidebar from './components/Sidebar/Sidebar/Sidebar'
 import { DEFAULT_VALUES } from './global/global-variables'
 import { DefaultValuesType, BookType } from './global/types'
-import useBookData from './hooks/UseBookData'
 import { updateBookList } from './utils/update-book-list'
 import Book from './components/Main/Book/Book'
+import { useBooksStore } from './hooks/useBooksStore'
+import useBookData from './hooks/UseBookData'
 
 function App() {
   const [bookSettings, setBookSettings] =
@@ -14,8 +15,12 @@ function App() {
   const [contentClass, setContentClass] = useState<
     'content grid' | 'content list'
   >('content grid')
-
   const { data } = useBookData('../../api/booklist.json')
+
+  const setBooks = useBooksStore((state) => state.setBooks)
+  const books = setBooks(data)
+
+  console.log(setBooks)
 
   // Update the bookSettings state
   function handleValueChange(value: string | boolean, key: string): void {

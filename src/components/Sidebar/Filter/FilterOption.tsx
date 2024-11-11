@@ -16,12 +16,13 @@ export default function FilterOption({
   const radioId = `${id}-${group}`
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
-    e.preventDefault()
+    // e.preventDefault()
     setIsChecked(!isChecked)
     handleOptionChange(e)
     console.log({
       value: e.currentTarget.value,
-      isChecked: e.currentTarget.checked,
+      checked: e.currentTarget.checked,
+      isChecked: !isChecked,
     })
   }
 
