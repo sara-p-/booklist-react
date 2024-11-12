@@ -1,21 +1,24 @@
 import './Filters.css'
-import { BookType } from '../../../global/types'
 import { simplifyAndSort } from '../../../utils/array-utils'
 import Fieldset from '../Fieldset/Fieldset'
 import Filter from './Filter'
+import { BookType } from '../../../global/types'
+import { useBooksStore } from '../../../hooks/useBooksStore'
 
 type FiltersProps = {
   handleValueChange: (value: string | boolean, key: string) => void
-  data: BookType[]
 }
 
-export default function Filters({ handleValueChange, data }: FiltersProps) {
+export default function Filters({ handleValueChange }: FiltersProps) {
+  // Get the book data object from the Zustand store
+  const books = useBooksStore((state: BookType[]) => state.books)
+
   // Remove duplicates from array and then sort it alphabetically
-  const authors: string[] = data
-    ? simplifyAndSort(data.map((book) => book.author))
+  const authors: string[] = books
+    ? simplifyAndSort(books.map((book: BookType) => book.author))
     : []
-  const series: string[] = data
-    ? simplifyAndSort(data.map((book) => book.series))
+  const series: string[] = books
+    ? simplifyAndSort(books.map((book: BookType) => book.series))
     : []
 
   return (

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import FilterButton from './FilterButton'
 import FilterOption from './FilterOption'
+import { useSettingsStore } from '../../../hooks/useSettingsStore'
 
 type FilterProps = {
   label: string
@@ -16,6 +17,8 @@ export default function Filter({
   const [isDropdownActive, setIsDropdownActive] = useState(false)
   const [theClasses, setTheClasses] = useState('filter-box')
   const [newLabel, setNewLabel] = useState(label)
+  // Get the settings from the Zustand store
+  const setSettings = useSettingsStore((state) => state.setSettings)
 
   const newOptions = options.map((option) => {
     const theKey = crypto.randomUUID()

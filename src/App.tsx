@@ -1,61 +1,53 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import Sidebar from './components/Sidebar/Sidebar/Sidebar'
-import { DEFAULT_VALUES } from './global/global-variables'
-import { DefaultValuesType, BookType } from './global/types'
-import { updateBookList } from './utils/update-book-list'
+// import { updateBookList } from './utils/update-book-list'
 import Book from './components/Main/Book/Book'
 import { useBooksStore } from './hooks/useBooksStore'
-import useBookData from './hooks/UseBookData'
+import useBookData from './hooks/useBookData'
+// import { useSettingsStore } from './hooks/useSettingsStore'
+import { BookType } from './global/types'
 
 function App() {
-  const [bookSettings, setBookSettings] =
-    useState<DefaultValuesType>(DEFAULT_VALUES)
-  const [bookList, setBookList] = useState<BookType[]>([])
   const [contentClass, setContentClass] = useState<
     'content grid' | 'content list'
   >('content grid')
+  // Get the book data object
   const { data } = useBookData('../../api/booklist.json')
-
-  const setBooks = useBooksStore((state) => state.setBooks)
-  const books = useBooksStore((state) => state.books)
-
+  // Get the book object from the Zustand store
   // const setBooks = useBooksStore((state) => state.setBooks)
-  // const books = data ? setBooks(data) : []
+  const books = useBooksStore((state) => state.books)
+  const setBooks = useBooksStore((state) => state.setBooks)
+  const settings = useBooksStore((state) => state.settings)
+  const setSettings = useBooksStore((state) => state.setSettings)
+  // Get the settings from the Zustand store
+  // const setSettings = useSettingsStore((state) => state.setSettings)
+  // const settings = useSettingsStore((state) => state.settings)
 
-  console.log({ books })
-
-  // Update the bookSettings state
+  // function to update the settings
   function handleValueChange(value: string | boolean, key: string): void {
-    const newValue = { ...bookSettings, [key]: value }
-    setBookSettings(newValue)
+    const newValue = { ...settings, [key]: value }
+    setSettings(newValue)
     setContentClass(newValue.view ? 'content list' : 'content grid')
   }
 
-  // Update the bookList based on the settings
+  // Store the book data in the Zustand store
   useEffect(() => {
     if (data) {
-      setBooks(data)
+      // setBooks(data)
+      setBooks(data, settings)
+      // console.log({ data })
     }
-  }, [data, setBooks])
-  // useEffect(() => {
-  //   if (data) {
-  //     setBookList(updateBookList(data, bookSettings))
-  //   }
-  // }, [data, bookSettings])
+  }, [data, setBooks, settings])
 
   return (
     <div className='box'>
-      <Sidebar
-        handleValueChange={handleValueChange}
-        bookList={bookList}
-        data={data}
-      />
+      <Sidebar handleValueChange={handleValueChange} />
       <div className='main'>
         <div className='wrapper'>
           <div className={contentClass}>
-            {bookList &&
-              bookList.map((book: BookType) => (
+            {books &&
+              books.map((book: BookType) => (
                 <Book
                   key={book.id}
                   title={book.title}
