@@ -7,19 +7,37 @@ import { moveAndSortEmptySeries, removeDuplicates } from '../utils/array-utils'
 type BooksStore = {
   books: BookType[]
   settings: DefaultValuesType
+  contentClass: string
   // setBooks: (books: BookType[]) => void
   setBooks: (books: BookType[], settings: DefaultValuesType) => void
   setSettings: (settings: DefaultValuesType) => void
+  setContentClass: (settings: DefaultValuesType) => void
 }
 
-export const useBooksStoreTest = create<BooksStore>((set) => ({
+export const useBooksStore = create<BooksStore>((set) => ({
   books: [],
   settings: DEFAULT_VALUES,
-  // setBooks: (books: BookType[]) => set({ books }),
+  contentClass: 'content grid',
+  setContentClass: (settings: DefaultValuesType) => {
+    if (settings.view) {
+      set({ contentClass: 'content list', settings })
+    } else {
+      set({ contentClass: 'content grid', settings })
+    }
+  },
   setSettings: (settings: DefaultValuesType) => set({ settings }),
   setBooks: (books: BookType[], settings: DefaultValuesType) => {
     let bookList: BookType[] = books
-    const { author, series, sort, order } = settings
+    const { author, series, sort, order, view } = settings
+
+    // ******************** CONTENT CLASS *************************//
+    // Set the content class based on the view setting
+    if (view) {
+      set({ contentClass: 'content list', settings })
+    } else {
+      set({ contentClass: 'content grid', settings })
+    }
+
     // ******************** SHOW/HIDE *************************//
     // filter the books based on which ones should be shown and which ones should be hidden
     bookList = filterArray(bookList, 'show', 'show')

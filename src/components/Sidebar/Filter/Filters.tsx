@@ -5,13 +5,9 @@ import Filter from './Filter'
 import { BookType } from '../../../global/types'
 import { useBooksStore } from '../../../hooks/useBooksStore'
 
-type FiltersProps = {
-  handleValueChange: (value: string | boolean, key: string) => void
-}
-
-export default function Filters({ handleValueChange }: FiltersProps) {
+export default function Filters() {
   // Get the book data object from the Zustand store
-  const books = useBooksStore((state: BookType[]) => state.books)
+  const books = useBooksStore((state) => state.books)
 
   // Remove duplicates from array and then sort it alphabetically
   const authors: string[] = books
@@ -23,16 +19,8 @@ export default function Filters({ handleValueChange }: FiltersProps) {
 
   return (
     <Fieldset legend='filters'>
-      <Filter
-        label={'author'}
-        options={authors}
-        handleValueChange={handleValueChange}
-      />
-      <Filter
-        label={'series'}
-        options={series}
-        handleValueChange={handleValueChange}
-      />
+      <Filter label={'author'} options={authors} />
+      <Filter label={'series'} options={series} />
     </Fieldset>
   )
 }

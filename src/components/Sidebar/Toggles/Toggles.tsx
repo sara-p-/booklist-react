@@ -11,11 +11,7 @@ import {
   faArrowDownAZ,
 } from '@fortawesome/free-solid-svg-icons'
 
-type TogglesProps = {
-  handleValueChange: (value: string | boolean, key: string) => void
-}
-
-export default function Toggles({ handleValueChange }: TogglesProps) {
+export default function Toggles() {
   // const id = useId()
   // const toggleId = `${id}-toggle`
 
@@ -26,21 +22,18 @@ export default function Toggles({ handleValueChange }: TogglesProps) {
         toggleId='theme'
         iconLeft={<FontAwesomeIcon className='icon' icon={faSun} />}
         iconRight={<FontAwesomeIcon className='icon' icon={faMoon} />}
-        handleValueChange={handleValueChange}
       />
       <Toggle
         label='Toggle grid/list view'
         toggleId='view'
         iconLeft={<FontAwesomeIcon className='icon' icon={faTableCellsLarge} />}
         iconRight={<FontAwesomeIcon className='icon' icon={faList} />}
-        handleValueChange={handleValueChange}
       />
       <Toggle
         label='Toggle ascending/descending sort'
         toggleId='order'
         iconLeft={<FontAwesomeIcon className='icon' icon={faArrowDownAZ} />}
         iconRight={<FontAwesomeIcon className='icon' icon={faArrowUpAZ} />}
-        handleValueChange={handleValueChange}
       />
     </Fieldset>
   )

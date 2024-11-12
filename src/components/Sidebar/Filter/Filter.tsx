@@ -1,24 +1,20 @@
 import { useState } from 'react'
 import FilterButton from './FilterButton'
 import FilterOption from './FilterOption'
-import { useSettingsStore } from '../../../hooks/useSettingsStore'
+import { useBooksStore } from '../../../hooks/useBooksStore'
 
 type FilterProps = {
   label: string
   options: string[]
-  handleValueChange: (value: string | boolean, key: string) => void
 }
 
-export default function Filter({
-  label,
-  options,
-  handleValueChange,
-}: FilterProps) {
+export default function Filter({ label, options }: FilterProps) {
   const [isDropdownActive, setIsDropdownActive] = useState(false)
   const [theClasses, setTheClasses] = useState('filter-box')
   const [newLabel, setNewLabel] = useState(label)
-  // Get the settings from the Zustand store
-  const setSettings = useSettingsStore((state) => state.setSettings)
+  // Grab the necessary values from the Zustand store
+  const settings = useBooksStore((state) => state.settings)
+  const setSettings = useBooksStore((state) => state.setSettings)
 
   const newOptions = options.map((option) => {
     const theKey = crypto.randomUUID()
@@ -30,7 +26,7 @@ export default function Filter({
     // If the filter is open (when the user clicks), remove the new label and close the filter
     if (!newState) {
       setNewLabel(label)
-      handleValueChange('', label)
+      setSettings({ ...settings, [label]: '' })
     }
     setIsDropdownActive(newState)
     const newClass = newState ? 'filter-box active' : 'filter-box'
@@ -40,7 +36,7 @@ export default function Filter({
   function handleOptionChange(e: React.ChangeEvent<HTMLInputElement>) {
     // e.preventDefault()
     const value = e.currentTarget.value
-    handleValueChange(value, label)
+    setSettings({ ...settings, [label]: value })
     // setIsOptionChecked(!isOptionChecked)
 
     // If the filter is currently active and the user clicks an option

@@ -4,18 +4,14 @@ import Toggles from '../Toggles/Toggles'
 import SortBox from '../Sort/SortBox'
 import Filters from '../Filter/Filters'
 
-type SidebarProps = {
-  handleValueChange: (value: string | boolean, key: string) => void
-}
-
-export default function Sidebar({ handleValueChange }: SidebarProps) {
+export default function Sidebar() {
   return (
     <>
       <Header />
       <div className='sidebar'>
-        <Toggles handleValueChange={handleValueChange} />
-        <SortBox handleValueChange={handleValueChange} />
-        <Filters handleValueChange={handleValueChange} />
+        <Toggles />
+        <SortBox />
+        <Filters />
       </div>
     </>
   )
