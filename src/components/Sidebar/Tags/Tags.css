@@ -1,0 +1,46 @@
+.tags-box {
+  margin: 0 16px 16px 16px;
+}
+
+.tag-box {
+  display: inline-block;
+  margin: 0 9px 9px 0;
+}
+
+.tag {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+  margin: 0;
+  position: absolute;
+}
+
+.tag-label {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 9px;
+  background: var(--secondary);
+  color: var(--primary);
+  border: 3px solid var(--primary);
+  border-radius: 6px;
+  display: block;
+  cursor: pointer;
+  transition: all 300ms;
+  position: relative;
+}
+
+.tag-label:hover,
+.tag-label:focus {
+  background-color: var(--hover);
+}
+
+.tag:checked + label.tag-label {
+  background-color: var(--primary);
+  color: var(--secondary);
+  border-color: var(--primary);
+}
+
+.tag:disabled + label {
+  opacity: 0.3;
+  cursor: not-allowed;
+}

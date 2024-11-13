@@ -28,5 +28,5 @@ export type DefaultValuesType = {
   sort: string
   author: string
   series: string
-  tags: string
+  tags: string[]
 }
