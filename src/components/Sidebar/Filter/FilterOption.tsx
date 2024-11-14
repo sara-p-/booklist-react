@@ -1,30 +1,29 @@
-import { useId, useState } from 'react'
+import { useEffect, useId, useState } from 'react'
+import { useResetButtonStore } from '../../../hooks/useResetButtonStore'
 
 type FilterOptionProps = {
   group: string
   value: string
+  isSelected: boolean
   handleOptionChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export default function FilterOption({
   group,
   value,
+  isSelected,
   handleOptionChange,
 }: FilterOptionProps) {
-  const [isChecked, setIsChecked] = useState<boolean>(false)
   const id = useId()
   const radioId = `${id}-${group}`
+  const [currentSelection, setCurrentSelection] = useState<boolean>(isSelected)
+  const resetButton = useResetButtonStore((state) => state.resetButton)
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
-    // e.preventDefault()
-    setIsChecked(!isChecked)
-    handleOptionChange(e)
-    console.log({
-      value: e.currentTarget.value,
-      checked: e.currentTarget.checked,
-      isChecked: !isChecked,
-    })
-  }
+  useEffect(() => {
+    if (resetButton) {
+      setCurrentSelection(false)
+    }
+  }, [resetButton])
 
   return (
     <li className='filter-option'>
@@ -34,8 +33,8 @@ export default function FilterOption({
         type='radio'
         name={group}
         value={value}
-        onChange={handleChange}
-        checked={isChecked}
+        onChange={handleOptionChange}
+        checked={currentSelection}
       />
       <label htmlFor={radioId} className='filter-label'>
         {value}

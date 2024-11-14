@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import FilterButton from './FilterButton'
 import FilterOption from './FilterOption'
 import { useSettingsStore } from '../../../hooks/useSettingsStore'
+import { DefaultValuesType } from '../../../global/types'
+import { useResetButtonStore } from '../../../hooks/useResetButtonStore'
 
 type FilterProps = {
   label: string
@@ -13,8 +15,12 @@ export default function Filter({ label, options }: FilterProps) {
   const [theClasses, setTheClasses] = useState('filter-box')
   const [newLabel, setNewLabel] = useState(label)
   // Grab the necessary values from the Zustand store
-  const settings = useSettingsStore((state) => state.settings)
+  const settings: DefaultValuesType = useSettingsStore(
+    (state) => state.settings
+  )
   const setSettings = useSettingsStore((state) => state.setSettings)
+  // Get the resetButton state from the Zustand store to define when the filter should reset
+  const resetButton = useResetButtonStore((state) => state.resetButton)
 
   const newOptions = options.map((option) => {
     const theKey = crypto.randomUUID()
@@ -34,11 +40,8 @@ export default function Filter({ label, options }: FilterProps) {
   }
 
   function handleOptionChange(e: React.ChangeEvent<HTMLInputElement>) {
-    // e.preventDefault()
     const value = e.currentTarget.value
     setSettings({ ...settings, [label]: value })
-    // setIsOptionChecked(!isOptionChecked)
-
     // If the filter is currently active and the user clicks an option
     if (isDropdownActive) {
       setNewLabel(value)
@@ -46,6 +49,15 @@ export default function Filter({ label, options }: FilterProps) {
       setNewLabel(label)
     }
   }
+
+  // Reset the filter when the reset button is clicked
+  useEffect(() => {
+    if (resetButton) {
+      setNewLabel(label)
+      setIsDropdownActive(false)
+      setTheClasses('filter-box')
+    }
+  }, [resetButton, label])
 
   return (
     <div className={theClasses}>
@@ -61,6 +73,9 @@ export default function Filter({ label, options }: FilterProps) {
             group={label}
             value={option.value}
             handleOptionChange={handleOptionChange}
+            isSelected={
+              settings[label as keyof DefaultValuesType] === option.value
+            }
           />
         ))}
       </ul>

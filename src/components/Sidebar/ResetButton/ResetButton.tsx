@@ -1,6 +1,5 @@
 import { useResetButtonStore } from '../../../hooks/useResetButtonStore'
 import { useSettingsStore } from '../../../hooks/useSettingsStore'
-// import { useTagsCheckedStore } from '../../../hooks/useTagsCheckedStore'
 import './ResetButton.css'
 
 export default function ResetButton() {
