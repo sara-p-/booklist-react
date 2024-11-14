@@ -10,13 +10,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import SortButton from './SortButton/SortButton'
 import { useState } from 'react'
-import { useBooksStore } from '../../../hooks/useBooksStore'
+import { useSettingsStore } from '../../../hooks/useSettingsStore'
 
 export default function SortBox() {
   const [sortValue, setSortValue] = useState<string>('series')
 
-  const settings = useBooksStore((state) => state.settings)
-  const setSettings = useBooksStore((state) => state.setSettings)
+  const settings = useSettingsStore((state) => state.settings)
+  const setSettings = useSettingsStore((state) => state.setSettings)
 
   function handleSortChange(event: React.ChangeEvent<HTMLInputElement>) {
     const value = event.target.value

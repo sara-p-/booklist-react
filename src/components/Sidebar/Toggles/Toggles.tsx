@@ -12,9 +12,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 export default function Toggles() {
-  // const id = useId()
-  // const toggleId = `${id}-toggle`
-
   return (
     <Fieldset legend='Toggles'>
       <Toggle

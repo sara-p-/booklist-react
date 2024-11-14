@@ -27,6 +27,9 @@
     width: auto;
     height: 100%;
     padding: 0 20px;
+    @media only screen and (min-width: 768px) {
+      padding: 0 20px 0 327px;
+    }
   }
   .content {
     width: 100%;

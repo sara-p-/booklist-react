@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import FilterButton from './FilterButton'
 import FilterOption from './FilterOption'
-import { useBooksStore } from '../../../hooks/useBooksStore'
+import { useSettingsStore } from '../../../hooks/useSettingsStore'
 
 type FilterProps = {
   label: string
@@ -13,8 +13,8 @@ export default function Filter({ label, options }: FilterProps) {
   const [theClasses, setTheClasses] = useState('filter-box')
   const [newLabel, setNewLabel] = useState(label)
   // Grab the necessary values from the Zustand store
-  const settings = useBooksStore((state) => state.settings)
-  const setSettings = useBooksStore((state) => state.setSettings)
+  const settings = useSettingsStore((state) => state.settings)
+  const setSettings = useSettingsStore((state) => state.setSettings)
 
   const newOptions = options.map((option) => {
     const theKey = crypto.randomUUID()

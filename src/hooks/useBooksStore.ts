@@ -1,46 +1,28 @@
 import { create } from 'zustand'
 import { BookType, DefaultValuesType } from '../global/types'
-import { DEFAULT_VALUES } from '../global/global-variables'
-import { filterArray } from '../utils/filter-utils'
+import { filterArray, filterTagsArray } from '../utils/filter-utils'
 import { moveAndSortEmptySeries, removeDuplicates } from '../utils/array-utils'
 
 type BooksStore = {
   books: BookType[]
-  settings: DefaultValuesType
-  contentClass: string
-  // setBooks: (books: BookType[]) => void
   setBooks: (books: BookType[], settings: DefaultValuesType) => void
-  setSettings: (settings: DefaultValuesType) => void
-  setContentClass: (settings: DefaultValuesType) => void
 }
 
 export const useBooksStore = create<BooksStore>((set) => ({
   books: [],
-  settings: DEFAULT_VALUES,
-  contentClass: 'content grid',
-  setContentClass: (settings: DefaultValuesType) => {
-    if (settings.view) {
-      set({ contentClass: 'content list', settings })
-    } else {
-      set({ contentClass: 'content grid', settings })
-    }
-  },
-  setSettings: (settings: DefaultValuesType) => set({ settings }),
   setBooks: (books: BookType[], settings: DefaultValuesType) => {
     let bookList: BookType[] = books
-    const { author, series, sort, order, view } = settings
-
-    // ******************** CONTENT CLASS *************************//
-    // Set the content class based on the view setting
-    if (view) {
-      set({ contentClass: 'content list', settings })
-    } else {
-      set({ contentClass: 'content grid', settings })
-    }
+    const { author, series, sort, order, tags } = settings
 
     // ******************** SHOW/HIDE *************************//
     // filter the books based on which ones should be shown and which ones should be hidden
     bookList = filterArray(bookList, 'show', 'show')
+
+    // ******************** TAGS *************************//
+    // if tags are present, filter the main array by those values
+    if (tags.length) {
+      bookList = filterTagsArray(bookList, tags)
+    }
 
     // ******************** FILTERS *************************//
     // If a filter value is present, filter the main array by that value
@@ -110,6 +92,6 @@ export const useBooksStore = create<BooksStore>((set) => ({
     // Flatten the given array into one giant array
     const formattedArray = subArrays.flat(1)
 
-    set({ books: formattedArray, settings })
+    set({ books: formattedArray })
   },
 }))

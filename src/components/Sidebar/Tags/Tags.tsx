@@ -2,23 +2,24 @@ import './Tags.css'
 import Fieldset from '../Fieldset/Fieldset'
 import { useBooksStore } from '../../../hooks/useBooksStore'
 import Tag from './Tag/Tag'
-import { removeDuplicates } from '../../../utils/array-utils'
+import { useDataStore } from '../../../hooks/useDataStore'
+import { filterCurrentTags } from '../../../utils/filter-utils'
 
 export default function Tags() {
-  // Pull in all of the books
+  // We need to compare all tags to the currently available tags (based on the books that are currently being displayed)
+  // Pull in the books from the store (the books that are currently being displayed)
   const books = useBooksStore((state) => state.books)
-  // Make an array of just the tags, which will be strings
-  const tagStringArray = books?.map((book) => {
-    const tags = book.tags.split(',')
-    return tags
-  })
-  const flattenedTagStringArray = tagStringArray.flat()
-  // Make an array of unique tags
-  const uniqueTags = removeDuplicates(flattenedTagStringArray)
+  // Pull in the original bookList
+  const originalData = useDataStore((state) => state.data)
+  // Make an array of all the tags and whether they are disabled or not
+  const allTags = filterCurrentTags(originalData, books)
 
   return (
     <Fieldset legend='Tags'>
-      {uniqueTags && uniqueTags.map((tag) => <Tag key={tag} value={tag} />)}
+      {allTags &&
+        allTags.map((tag) => (
+          <Tag key={tag.tag} value={tag.tag} disabled={tag.disabled} />
+        ))}
     </Fieldset>
   )
 }

@@ -3,18 +3,18 @@ import { simplifyAndSort } from '../../../utils/array-utils'
 import Fieldset from '../Fieldset/Fieldset'
 import Filter from './Filter'
 import { BookType } from '../../../global/types'
-import { useBooksStore } from '../../../hooks/useBooksStore'
+import { useDataStore } from '../../../hooks/useDataStore'
 
 export default function Filters() {
   // Get the book data object from the Zustand store
-  const books = useBooksStore((state) => state.books)
+  const data = useDataStore((state) => state.data)
 
   // Remove duplicates from array and then sort it alphabetically
-  const authors: string[] = books
-    ? simplifyAndSort(books.map((book: BookType) => book.author))
+  const authors: string[] = data
+    ? simplifyAndSort(data.map((book: BookType) => book.author))
     : []
-  const series: string[] = books
-    ? simplifyAndSort(books.map((book: BookType) => book.series))
+  const series: string[] = data
+    ? simplifyAndSort(data.map((book: BookType) => book.series))
     : []
 
   return (

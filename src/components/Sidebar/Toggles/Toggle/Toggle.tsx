@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './Toggle.css'
-import { useBooksStore } from '../../../../hooks/useBooksStore'
+import { useSettingsStore } from '../../../../hooks/useSettingsStore'
+import { useContentClassStore } from '../../../../hooks/useContentClassStore'
 
 type ToggleProps = {
   label: string
@@ -17,13 +18,17 @@ export default function Toggle({
 }: ToggleProps) {
   const [isChecked, setIsChecked] = useState<boolean>(false)
   // Get the settings from the Zustand store
-  const settings = useBooksStore((state) => state.settings)
-  const setSettings = useBooksStore((state) => state.setSettings)
+  const settings = useSettingsStore((state) => state.settings)
+  const setSettings = useSettingsStore((state) => state.setSettings)
+  const setContentClass = useContentClassStore((state) => state.setContentClass)
 
   function handleToggleChange(): void {
     const newValue = !isChecked
     setIsChecked(newValue)
     setSettings({ ...settings, [toggleId.toLowerCase()]: newValue })
+    if (toggleId === 'view') {
+      setContentClass(newValue)
+    }
   }
 
   return (
