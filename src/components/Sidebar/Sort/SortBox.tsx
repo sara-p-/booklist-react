@@ -9,20 +9,28 @@ import {
   faStar,
 } from '@fortawesome/free-solid-svg-icons'
 import SortButton from './SortButton/SortButton'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useResetButtonStore } from '../../../hooks/useResetButtonStore'
 import { useSettingsStore } from '../../../hooks/useSettingsStore'
 
 export default function SortBox() {
   const [sortValue, setSortValue] = useState<string>('series')
+  const resetButton = useResetButtonStore((state) => state.resetButton)
 
   const settings = useSettingsStore((state) => state.settings)
   const setSettings = useSettingsStore((state) => state.setSettings)
 
   function handleSortChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const value = event.target.value
+    const value = event.currentTarget.value
     setSortValue(value)
     setSettings({ ...settings, sort: value })
   }
+
+  useEffect(() => {
+    if (resetButton) {
+      setSortValue('series')
+    }
+  }, [resetButton])
 
   return (
     <Fieldset legend='Sort'>
