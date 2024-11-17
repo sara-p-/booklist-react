@@ -8,16 +8,16 @@ export type BookType = {
   year: string
   length: string
   rating: string
-  spiciness: string
-  finish: string
-  show: string
-  tags: string
-  description: string
-  smell: string
-  purchased: string
-  finished: string
-  notes: string
-  percent: string
+  spiciness?: string
+  finish?: string
+  show?: string
+  tags?: string
+  description?: string
+  smell?: string
+  purchased?: string
+  finished?: string
+  notes?: string
+  percent?: string
 }
 
 // default type for the booklist filters

@@ -9,6 +9,8 @@ import { useSettingsStore } from './hooks/useSettingsStore'
 import { useDataStore } from './hooks/useDataStore'
 import { useContentClassStore } from './hooks/useContentClassStore'
 import { useResetButtonStore } from './hooks/useResetButtonStore'
+import Dialog from './components/Dialog/Dialog'
+import { useCurrentBookStore } from './hooks/useCurrentBookStore'
 
 function App() {
   // Get the book data object
@@ -22,6 +24,9 @@ function App() {
   // Get the reset button state
   const resetButton = useResetButtonStore((state) => state.resetButton)
   const setResetButton = useResetButtonStore((state) => state.setResetButton)
+  // Get the current book from the Zustand store (to use in the dialog)
+  const currentBook = useCurrentBookStore((state) => state.currentBook)
+  const setCurrentBook = useCurrentBookStore((state) => state.setCurrentBook)
 
   // Store the book data in the Zustand store
   useEffect(() => {
@@ -46,22 +51,11 @@ function App() {
         <div className='wrapper'>
           <div className={contentClass}>
             {books &&
-              books.map((book: BookType) => (
-                <Book
-                  key={book.id}
-                  id={book.id}
-                  title={book.title}
-                  author={book.author}
-                  series={book.series}
-                  number={book.number}
-                  year={book.year}
-                  length={book.length}
-                  rating={book.rating}
-                />
-              ))}
+              books.map((book: BookType) => <Book key={book.id} book={book} />)}
           </div>
         </div>
       </div>
+      <Dialog />
     </div>
   )
 }
