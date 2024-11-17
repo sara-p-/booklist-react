@@ -9,6 +9,7 @@ type BookProps = {
   year: string
   length: string
   rating: string
+  id: string
 }
 
 export default function Book({
@@ -19,9 +20,10 @@ export default function Book({
   year,
   length,
   rating,
+  id,
 }: BookProps) {
   return (
-    <button className='book-button'>
+    <button className='book-button' data-id={id}>
       <div className='book-wrapper'>
         <img
           className='book-image'

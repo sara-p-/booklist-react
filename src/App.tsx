@@ -49,6 +49,7 @@ function App() {
               books.map((book: BookType) => (
                 <Book
                   key={book.id}
+                  id={book.id}
                   title={book.title}
                   author={book.author}
                   series={book.series}
