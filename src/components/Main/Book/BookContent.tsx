@@ -1,6 +1,10 @@
 import { BookType } from '../../../global/types'
 
-export function BookContent({ book }: { book: BookType }) {
+type BookContentProps = {
+  book: BookType
+}
+
+export function BookContent({ book }: BookContentProps) {
   return (
     <div className='book-content'>
       <div className='book-info'>

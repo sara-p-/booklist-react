@@ -2,10 +2,23 @@ import './Book.css'
 import { createImageUrl } from '../../../utils/utilities'
 import { BookContent } from './BookContent'
 import { BookType } from '../../../global/types'
+// import { useCurrentBookStore } from '../../../hooks/useCurrentBookStore'
 
-export default function Book({ book }: { book: BookType }) {
+type BookProps = {
+  book: BookType
+  handleOpenDialog: () => void
+}
+
+export default function Book({ book, handleOpenDialog }: BookProps) {
+  // const currentBook = useCurrentBookStore((state) => state.currentBook)
+  // const setCurrentBook = useCurrentBookStore((state) => state.setCurrentBook)
+
   return (
-    <button className='book-button' data-id={book.id}>
+    <button
+      className='book-button'
+      data-id={book.id}
+      onClick={handleOpenDialog}
+    >
       <div className='book-wrapper'>
         <img
           className='book-image'

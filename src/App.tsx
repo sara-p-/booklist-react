@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import './App.css'
 import Sidebar from './components/Sidebar/Sidebar/Sidebar'
 import Book from './components/Main/Book/Book'
@@ -18,8 +18,10 @@ function App() {
   // Get the book object from the Zustand store
   const books = useBooksStore((state) => state.books)
   const setBooks = useBooksStore((state) => state.setBooks)
+  // Get the settings object from the Zustand store
   const settings = useSettingsStore((state) => state.settings)
   const setData = useDataStore((state) => state.setData)
+  // Get the content class from the Zustand store
   const contentClass = useContentClassStore((state) => state.contentClass)
   // Get the reset button state
   const resetButton = useResetButtonStore((state) => state.resetButton)
@@ -27,6 +29,13 @@ function App() {
   // Get the current book from the Zustand store (to use in the dialog)
   const currentBook = useCurrentBookStore((state) => state.currentBook)
   const setCurrentBook = useCurrentBookStore((state) => state.setCurrentBook)
+
+  // Function to open the dialog and pass it the current book
+  const dialogRef = useRef<HTMLDialogElement>(null)
+  const handleOpenDialog = (bookId: string) => {
+    dialogRef.current?.showModal()
+    setCurrentBook(bookId)
+  }
 
   // Store the book data in the Zustand store
   useEffect(() => {
@@ -51,11 +60,17 @@ function App() {
         <div className='wrapper'>
           <div className={contentClass}>
             {books &&
-              books.map((book: BookType) => <Book key={book.id} book={book} />)}
+              books.map((book: BookType) => (
+                <Book
+                  key={book.id}
+                  book={book}
+                  handleOpenDialog={() => handleOpenDialog(book.id)}
+                />
+              ))}
           </div>
         </div>
       </div>
-      <Dialog />
+      <Dialog ref={dialogRef} bookId={currentBook} />
     </div>
   )
 }
