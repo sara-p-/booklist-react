@@ -12,20 +12,34 @@ import SortButton from './SortButton/SortButton'
 import { useEffect, useState } from 'react'
 import { useResetButtonStore } from '../../../hooks/useResetButtonStore'
 import { useSettingsStore } from '../../../hooks/useSettingsStore'
+import { useOrderToggleStore } from '../../../hooks/useOrderToggleStore'
 
 export default function SortBox() {
   const [sortValue, setSortValue] = useState<string>('series')
+  // Get the order toggle from the Zustand store
+  const setIsOrderChecked = useOrderToggleStore(
+    (state) => state.setIsOrderChecked
+  )
+  // Get the reset button from the Zustand store
   const resetButton = useResetButtonStore((state) => state.resetButton)
-
+  // Get the settings from the Zustand store
   const settings = useSettingsStore((state) => state.settings)
   const setSettings = useSettingsStore((state) => state.setSettings)
 
+  // Handle the sort change
   function handleSortChange(event: React.ChangeEvent<HTMLInputElement>) {
     const value = event.currentTarget.value
     setSortValue(value)
     setSettings({ ...settings, sort: value })
+    // Set the order toggle to true if the sort value is year, rating, or length
+    if (value === 'year' || value === 'rating' || value === 'length') {
+      setIsOrderChecked(true)
+    } else {
+      setIsOrderChecked(false)
+    }
   }
 
+  // Reset the sort value when the reset button is clicked
   useEffect(() => {
     if (resetButton) {
       setSortValue('series')

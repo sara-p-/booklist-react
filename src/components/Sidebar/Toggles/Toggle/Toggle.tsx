@@ -1,7 +1,8 @@
-import { useState } from 'react'
 import './Toggle.css'
+import { useEffect, useState } from 'react'
 import { useSettingsStore } from '../../../../hooks/useSettingsStore'
 import { useContentClassStore } from '../../../../hooks/useContentClassStore'
+import { useOrderToggleStore } from '../../../../hooks/useOrderToggleStore'
 
 type ToggleProps = {
   label: string
@@ -16,12 +17,23 @@ export default function Toggle({
   iconLeft,
   iconRight,
 }: ToggleProps) {
-  const [isChecked, setIsChecked] = useState<boolean>(false)
+  // Set the initial state of the toggle
+  const [isChecked, setIsChecked] = useState(false)
+  // Get the order toggle state (set by the sort button selection) from the Zustand store
+  const isOrderChecked = useOrderToggleStore((state) => state.isOrderChecked)
   // Get the settings from the Zustand store
   const settings = useSettingsStore((state) => state.settings)
   const setSettings = useSettingsStore((state) => state.setSettings)
+  // Get the content class from the Zustand store
   const setContentClass = useContentClassStore((state) => state.setContentClass)
+  // Set the initial state of the toggle based on the order toggle state
+  useEffect(() => {
+    if (toggleId === 'order') {
+      setIsChecked(isOrderChecked)
+    }
+  }, [isOrderChecked, toggleId])
 
+  // Handle the toggle change
   function handleToggleChange(): void {
     const newValue = !isChecked
     setIsChecked(newValue)
