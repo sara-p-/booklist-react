@@ -112,7 +112,7 @@
         display: none;
       }
     }
-    .book-rating-item {
+    .book-info-item.book-rating {
       display: block;
       @media only screen and (min-width: 1024px) {
         display: none;

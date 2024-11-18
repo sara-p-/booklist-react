@@ -2,7 +2,6 @@ import './Book.css'
 import { createImageUrl } from '../../../utils/utilities'
 import { BookContent } from './BookContent'
 import { BookType } from '../../../global/types'
-// import { useCurrentBookStore } from '../../../hooks/useCurrentBookStore'
 
 type BookProps = {
   book: BookType
@@ -10,9 +9,6 @@ type BookProps = {
 }
 
 export default function Book({ book, handleOpenDialog }: BookProps) {
-  // const currentBook = useCurrentBookStore((state) => state.currentBook)
-  // const setCurrentBook = useCurrentBookStore((state) => state.setCurrentBook)
-
   return (
     <button
       className='book-button'
