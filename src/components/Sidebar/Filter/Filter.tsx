@@ -14,6 +14,7 @@ export default function Filter({ label, options }: FilterProps) {
   const [isDropdownActive, setIsDropdownActive] = useState(false)
   const [theClasses, setTheClasses] = useState('filter-box')
   const [newLabel, setNewLabel] = useState(label)
+  const [newLabelValue, setNewLabelValue] = useState('')
   // Grab the necessary values from the Zustand store
   const settings: DefaultValuesType = useSettingsStore(
     (state) => state.settings
@@ -32,6 +33,7 @@ export default function Filter({ label, options }: FilterProps) {
     // If the filter is open (when the user clicks), remove the new label and close the filter
     if (!newState) {
       setNewLabel(label)
+      setNewLabelValue('')
       setSettings({ ...settings, [label]: '' })
     }
     setIsDropdownActive(newState)
@@ -42,12 +44,10 @@ export default function Filter({ label, options }: FilterProps) {
   function handleOptionChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.currentTarget.value
     setSettings({ ...settings, [label]: value })
-    // If the filter is currently active and the user clicks an option
-    if (isDropdownActive) {
-      setNewLabel(value)
-    } else {
-      setNewLabel(label)
-    }
+    setNewLabelValue(value)
+    // When the user clicks an option, the class on the filter should change to include 'selected'
+    const newClass = isDropdownActive ? 'filter-box selected' : 'filter-box'
+    setTheClasses(newClass)
   }
 
   // Reset the filter when the reset button is clicked
@@ -55,6 +55,7 @@ export default function Filter({ label, options }: FilterProps) {
     if (resetButton) {
       setNewLabel(label)
       setIsDropdownActive(false)
+      setNewLabelValue('')
       setTheClasses('filter-box')
     }
   }, [resetButton, label])
@@ -63,6 +64,7 @@ export default function Filter({ label, options }: FilterProps) {
     <div className={theClasses}>
       <FilterButton
         label={newLabel}
+        value={newLabelValue.toLowerCase()}
         isActive={isDropdownActive}
         handleButtonClick={handleButtonClick}
       />

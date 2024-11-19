@@ -1,5 +1,5 @@
 import useFetchData from './useFetchData'
-import { useBooksStore } from './useBooksStore'
+import { useUpdateBooksStore } from './useUpdateBookStore'
 import { useSettingsStore } from './useSettingsStore'
 import { useDataStore } from './useDataStore'
 import { useResetButtonStore } from './useResetButtonStore'
@@ -9,8 +9,8 @@ export default function useBookInfo() {
   // Get the book data object
   const { data } = useFetchData('../../api/booklist.json')
   // Get the book object from the Zustand store
-  const books = useBooksStore((state) => state.books)
-  const setBooks = useBooksStore((state) => state.setBooks)
+  const books = useUpdateBooksStore((state) => state.books)
+  const setBooks = useUpdateBooksStore((state) => state.setBooks)
   // Get the settings object from the Zustand store
   const settings = useSettingsStore((state) => state.settings)
   const setData = useDataStore((state) => state.setData)

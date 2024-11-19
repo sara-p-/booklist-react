@@ -21,16 +21,16 @@
   cursor: pointer;
   appearance: none;
   color: var(--primary);
-  transition: background-color 300ms, color 300ms;
+  /* transition: background-color 300ms, color 300ms; */
 }
 
-.filter-button.set {
+/* .filter-button.set {
   background-color: var(--set);
   color: var(--secondary);
 }
 .filter-button.set i {
   color: var(--secondary);
-}
+} */
 
 .filter-button-box {
   display: flex;
@@ -78,7 +78,11 @@
 
 .filter-box.active > .filter-button {
   border-bottom: 3px solid var(--primary);
-  /* background-color: var(--active); */
+}
+
+.filter-box.selected > .filter-button {
+  background-color: var(--primary);
+  color: var(--secondary);
 }
 
 .filter-box.active > .filter-button i {
@@ -123,4 +127,28 @@
 .filter-option .filter-radio:checked + label {
   background-color: var(--set);
   color: var(--secondary);
+}
+
+/* Filter Button Label */
+.filter-button-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+}
+
+.filter-button-value {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin-right: 8px;
+}
+
+.selected-value {
+  width: 139px;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-right: 8px;
+  text-overflow: ellipsis;
 }

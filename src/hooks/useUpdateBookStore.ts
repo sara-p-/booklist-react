@@ -8,7 +8,7 @@ type BooksStore = {
   setBooks: (books: BookType[], settings: DefaultValuesType) => void
 }
 
-export const useBooksStore = create<BooksStore>((set) => ({
+export const useUpdateBooksStore = create<BooksStore>((set) => ({
   books: [],
   setBooks: (books: BookType[], settings: DefaultValuesType) => {
     let bookList: BookType[] = books
@@ -36,7 +36,7 @@ export const useBooksStore = create<BooksStore>((set) => ({
     // ******************** SORTING *********************//
     // Make an array of the item to group by (example: Series)
     const sortGroup: string[] = bookList.map((object) => {
-      return object[sort as keyof BookType]
+      return (object[sort as keyof BookType] ?? '') as string
     })
     // Filter out the duplicates
     const arrayToSort = removeDuplicates(sortGroup)

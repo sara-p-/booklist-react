@@ -10,7 +10,7 @@ import { forwardRef, useImperativeHandle, useRef } from 'react'
 import { BookType } from '../../global/types'
 import { BookContent } from '../Main/Book/BookContent'
 import { createImageUrl, getNextBook } from '../../utils/utilities'
-import { useBooksStore } from '../../hooks/useBooksStore'
+import { useUpdateBooksStore } from '../../hooks/useUpdateBookStore'
 import { useCurrentBookStore } from '../../hooks/useCurrentBookStore'
 
 type DialogProps = {
@@ -22,7 +22,7 @@ const Dialog = forwardRef(({ bookId }: DialogProps, ref) => {
   //get the setter for the current book in the store
   const setCurrentBook = useCurrentBookStore((state) => state.setCurrentBook)
   // grab the book from the bookId by finding it in the books array
-  const books: BookType[] = useBooksStore((state) => state.books)
+  const books: BookType[] = useUpdateBooksStore((state) => state.books)
   const book = books.find((book) => book.id === bookId)
 
   // Expose methods to parent components

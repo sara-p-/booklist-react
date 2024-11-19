@@ -3,7 +3,8 @@ import { BookType } from '../global/types'
 // function to create the image urls
 export function createImageUrl(title: string) {
   const lowerCaseTitle = title.toLowerCase()
-  const titleArray = lowerCaseTitle.split(' ')
+  const removeSpecialCharacters = lowerCaseTitle.replace(/[^a-z0-9\s-]/g, '')
+  const titleArray = removeSpecialCharacters.split(' ')
   const titleArrayWithDashes = titleArray.join('-')
   return `/book_${titleArrayWithDashes}.jpg`
 }
