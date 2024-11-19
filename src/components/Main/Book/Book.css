@@ -1,3 +1,7 @@
+.list-heading {
+  display: none;
+}
+
 .book-button {
   position: relative;
   appearance: none;
@@ -37,6 +41,16 @@
 }
 
 .list {
+  .list-heading {
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    display: block;
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
   .book-button {
     height: auto;
     display: block;
