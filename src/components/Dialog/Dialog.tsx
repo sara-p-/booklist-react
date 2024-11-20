@@ -12,6 +12,7 @@ import { BookContent } from '../Main/Book/BookContent'
 import { createImageUrl, getNextBook } from '../../utils/utilities'
 import { useUpdateBooksStore } from '../../hooks/useUpdateBookStore'
 import { useCurrentBookStore } from '../../hooks/useCurrentBookStore'
+import { filterDescription } from '../../utils/filter-utils'
 
 type DialogProps = {
   bookId: string
@@ -60,11 +61,31 @@ const Dialog = forwardRef(({ bookId }: DialogProps, ref) => {
             </div>
             <div className='dialog-description-row'>
               <div className='dialog-tags-box'>
-                <p className='dialog-tags'>
-                  <strong>tags:</strong> {book.tags}
-                </p>
+                <h4 className='dialog-tags-heading'>
+                  <strong>tags:</strong>
+                </h4>
+                <p className='dialog-tags'>{book.tags}</p>
               </div>
-              <div className='dialog-description'>{book.description}</div>
+              <div className='dialog-description'>
+                <h4 className='dialog-description-heading'>
+                  <strong>description:</strong>
+                </h4>
+                {book.description &&
+                  filterDescription(book.description).map((p, index) => (
+                    // if the paragraph has <strong> tags, wrap the text in a <strong> tag
+                    <p key={index}>
+                      {p.includes('<strong>') ? (
+                        <strong>
+                          {p
+                            .replace(/<strong>/g, '')
+                            .replace(/<\/strong>/g, '')}
+                        </strong>
+                      ) : (
+                        p
+                      )}
+                    </p>
+                  ))}
+              </div>
             </div>
           </div>
         </div>

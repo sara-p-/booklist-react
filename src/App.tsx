@@ -45,7 +45,6 @@ function App() {
                         {sortSetting}: {book[sortSetting as keyof BookType]}
                       </p>
                       <Book
-                        // key={book.id}
                         book={book}
                         handleOpenDialog={() => handleOpenDialog(book.id)}
                       />

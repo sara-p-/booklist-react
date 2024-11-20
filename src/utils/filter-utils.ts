@@ -86,3 +86,13 @@ export function filterListHeadings(books: BookType[], sortSetting: string) {
 
   return firstBooks
 }
+
+// Function to filter the book description by the markdown tags
+export function filterDescription(description: string) {
+  // remove <p> tags
+  const cleanedDescription = description.replace(/<p>/g, '')
+  // split the description into paragraphs
+  const pArray = cleanedDescription.split('</p>')
+
+  return pArray
+}

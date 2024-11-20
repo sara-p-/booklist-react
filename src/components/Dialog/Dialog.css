@@ -146,6 +146,19 @@
         color: var(--medium-grey);
       }
     }
+
+    .book-divider {
+      border: none;
+      height: 2px;
+      background-color: var(--primary);
+      width: 200px;
+      margin-right: 100%;
+    }
+  }
+
+  .dialog-tags-box {
+    /* border-bottom: 2px solid var(--primary); */
+    margin-bottom: 2rem;
   }
 
   .dialog-description-row {
