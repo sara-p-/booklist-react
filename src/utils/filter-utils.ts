@@ -16,8 +16,12 @@ export function filterArray(
 
 export function filterTags(books: BookType[]) {
   // Make an array of just the tags, which will be strings
-  const tagStringArray = books?.map((book) => book.tags.split(', '))
-  const flattenedTagStringArray = tagStringArray.flat()
+  const tagStringArray = books.length
+    ? books.map((book) => book.tags?.split(', ') || [])
+    : []
+  const flattenedTagStringArray: string[] = tagStringArray.length
+    ? tagStringArray.flat()
+    : []
   // Make an array of unique tags
   const uniqueTags = removeDuplicates(flattenedTagStringArray)
 
@@ -51,10 +55,10 @@ export function filterTagsArray(books: BookType[], tags: string[]) {
 
   books.forEach((book) => {
     // make the tag string of each book an array
-    const tagArray = book.tags.split(', ')
+    const tagArray = book.tags?.split(', ')
     // check to see if all of the selected tags are in the array
     const success = formattedTagsArray.every(
-      (tag) => tagArray.indexOf(tag) !== -1
+      (tag) => tagArray?.indexOf(tag) !== -1
     )
     // If so, add the book to the new bookList array
     if (success) {
@@ -63,4 +67,22 @@ export function filterTagsArray(books: BookType[], tags: string[]) {
   })
 
   return newBooksArray
+}
+
+export function filterListHeadings(books: BookType[], sortSetting: string) {
+  let firstBooks: { sort: string; id: string }[] = []
+  if (sortSetting === 'series' || sortSetting === 'year') {
+    // Make an array of just the series and remove the duplicates
+    const array = books.map((b) => ({
+      sort: (b[sortSetting as keyof BookType] as string) ?? '',
+      id: b.id,
+    }))
+    // filter the array to only include the first book of each series
+    firstBooks = array.filter(
+      (book, index, array) =>
+        array.findIndex((t) => t.sort === book.sort) === index
+    )
+  }
+
+  return firstBooks
 }

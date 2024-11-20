@@ -16,6 +16,7 @@ import { useOrderToggleStore } from '../../../hooks/useOrderToggleStore'
 
 export default function SortBox() {
   const [sortValue, setSortValue] = useState<string>('series')
+
   // Get the order toggle from the Zustand store
   const setIsOrderChecked = useOrderToggleStore(
     (state) => state.setIsOrderChecked
@@ -31,7 +32,7 @@ export default function SortBox() {
     const value = event.currentTarget.value
     setSortValue(value)
     setSettings({ ...settings, sort: value })
-    // Set the order toggle to true if the sort value is year, rating, or length
+
     if (value === 'year' || value === 'rating' || value === 'length') {
       setIsOrderChecked(true)
     } else {
