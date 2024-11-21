@@ -11,6 +11,7 @@ toggle-box:last-of-type {
 
 .toggle-box .icon {
   font-size: 1.3rem;
+  width: 1.3rem;
 }
 
 .toggle {

@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 import { useSettingsStore } from '../../../../hooks/useSettingsStore'
 import { useContentClassStore } from '../../../../hooks/useContentClassStore'
 import { useOrderToggleStore } from '../../../../hooks/useOrderToggleStore'
+import { faArrowDown91, faArrowUp91 } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 type ToggleProps = {
   label: string
@@ -45,7 +47,11 @@ export default function Toggle({
 
   return (
     <div className='toggle-box'>
-      {iconLeft}
+      {isOrderChecked && toggleId === 'order' ? (
+        <FontAwesomeIcon icon={faArrowUp91} className='icon' />
+      ) : (
+        iconLeft
+      )}
       <input
         className='toggle'
         type='checkbox'
@@ -55,7 +61,11 @@ export default function Toggle({
         id={toggleId}
       />
       <label htmlFor={toggleId}>{label}</label>
-      {iconRight}
+      {isOrderChecked && toggleId === 'order' ? (
+        <FontAwesomeIcon icon={faArrowDown91} className='icon' />
+      ) : (
+        iconRight
+      )}
     </div>
   )
 }

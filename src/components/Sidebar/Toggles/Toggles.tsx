@@ -1,4 +1,3 @@
-import './Toggles.css'
 import Toggle from './Toggle/Toggle'
 import Fieldset from '../Fieldset/Fieldset'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -14,24 +13,28 @@ import {
 export default function Toggles() {
   return (
     <Fieldset legend='Toggles'>
-      <Toggle
-        label='Toggle dark/light theme'
-        toggleId='theme'
-        iconLeft={<FontAwesomeIcon className='icon' icon={faSun} />}
-        iconRight={<FontAwesomeIcon className='icon' icon={faMoon} />}
-      />
-      <Toggle
-        label='Toggle grid/list view'
-        toggleId='view'
-        iconLeft={<FontAwesomeIcon className='icon' icon={faTableCellsLarge} />}
-        iconRight={<FontAwesomeIcon className='icon' icon={faList} />}
-      />
-      <Toggle
-        label='Toggle ascending/descending sort'
-        toggleId='order'
-        iconLeft={<FontAwesomeIcon className='icon' icon={faArrowDownAZ} />}
-        iconRight={<FontAwesomeIcon className='icon' icon={faArrowUpAZ} />}
-      />
+      <div className='toggles'>
+        <Toggle
+          label='Toggle dark/light theme'
+          toggleId='theme'
+          iconLeft={<FontAwesomeIcon className='icon' icon={faSun} />}
+          iconRight={<FontAwesomeIcon className='icon' icon={faMoon} />}
+        />
+        <Toggle
+          label='Toggle grid/list view'
+          toggleId='view'
+          iconLeft={
+            <FontAwesomeIcon className='icon' icon={faTableCellsLarge} />
+          }
+          iconRight={<FontAwesomeIcon className='icon' icon={faList} />}
+        />
+        <Toggle
+          label='Toggle ascending/descending sort'
+          toggleId='order'
+          iconLeft={<FontAwesomeIcon className='icon' icon={faArrowDownAZ} />}
+          iconRight={<FontAwesomeIcon className='icon' icon={faArrowUpAZ} />}
+        />
+      </div>
     </Fieldset>
   )
 }
