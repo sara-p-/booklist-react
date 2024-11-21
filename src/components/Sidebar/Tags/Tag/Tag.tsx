@@ -1,6 +1,6 @@
 import { useEffect, useId, useState } from 'react'
-import { useSettingsStore } from '../../../../hooks/useSettingsStore'
-import { useResetButtonStore } from '../../../../hooks/useResetButtonStore'
+import { useSettingsStore } from '../../../../hooks/Zustand/useSettingsStore'
+import { useResetButtonStore } from '../../../../hooks/Zustand/useResetButtonStore'
 
 type TagProps = {
   value: string

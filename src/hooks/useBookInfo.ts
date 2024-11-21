@@ -1,8 +1,8 @@
 import useFetchData from './useFetchData'
-import { useUpdateBooksStore } from './useUpdateBookStore'
-import { useSettingsStore } from './useSettingsStore'
-import { useDataStore } from './useDataStore'
-import { useResetButtonStore } from './useResetButtonStore'
+import { useUpdateBooksStore } from './Zustand/useUpdateBookStore'
+import { useSettingsStore } from './Zustand/useSettingsStore'
+import { useDataStore } from './Zustand/useDataStore'
+import { useResetButtonStore } from './Zustand/useResetButtonStore'
 import { useEffect } from 'react'
 
 export default function useBookInfo() {

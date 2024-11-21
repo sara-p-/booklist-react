@@ -24,3 +24,59 @@ export function moveAndSortEmptySeries(
 export function simplifyAndSort(array: string[]) {
   return removeDuplicates(array).sort()
 }
+
+// Function to order an array based on the Order Setting
+export function orderSeries(
+  array: { sort: string; groupArray: BookType[] }[],
+  sortSetting: string
+) {
+  // ******************* SERIES ORDERING *******************//
+  // If orderBy has a value (other than undefined), further sort the array by the value
+  const subOrderedArray = array.map(({ groupArray }) => {
+    const subOrderArray = groupArray.sort((a, b) =>
+      a.number.localeCompare(b.number)
+    )
+    return { sortSetting, subOrderArray }
+  })
+  // remove the objects and replace with just the subArrays
+  const subArrays = subOrderedArray.map(({ subOrderArray }) => {
+    return subOrderArray
+  })
+
+  return subArrays
+}
+
+// Function to order the books based on the Order setting (asc vs desc)
+export function orderBooks(
+  array: { sort: string; groupArray: BookType[] }[],
+  sort: string,
+  order: boolean
+) {
+  // ******************** ASCENDING VS DESCENDING ORDER **************** //
+  // Sort by the sort parameter
+  let orderedArray = array.sort((a, b) => a.sort.localeCompare(b.sort))
+  // If there is no series listed, move it to the end of the array
+  const hasEmptySeries = orderedArray.some(
+    (object: { sort: string }) => object.sort === ''
+  )
+  if (hasEmptySeries) {
+    orderedArray = moveAndSortEmptySeries(orderedArray)
+  }
+
+  // if sort === rating, we need to alter the localeCompare to the numeric option
+  if (sort === 'rating' || sort === 'year' || sort === 'length') {
+    orderedArray = array.sort((a, b) =>
+      a.sort.localeCompare(b.sort, undefined, { numeric: true })
+    )
+  }
+
+  // If 'order' is true, switch from ascending to descending order
+  if (order) orderedArray.reverse()
+
+  // Create one giant array with a bunch of sub arrays
+  const subArrays = orderedArray.map(({ groupArray }) => {
+    return groupArray
+  })
+
+  return { subArrays, orderedArray }
+}

@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { useCurrentBookStore } from './useCurrentBookStore'
+import { useCurrentBookStore } from './Zustand/useCurrentBookStore'
 
 export default function useDialogData() {
   // Get the current book from the Zustand store (to use in the dialog)

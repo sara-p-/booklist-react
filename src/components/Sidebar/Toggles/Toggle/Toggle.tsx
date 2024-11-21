@@ -1,8 +1,8 @@
 import './Toggle.css'
 import { useEffect, useState } from 'react'
-import { useSettingsStore } from '../../../../hooks/useSettingsStore'
-import { useContentClassStore } from '../../../../hooks/useContentClassStore'
-import { useOrderToggleStore } from '../../../../hooks/useOrderToggleStore'
+import { useSettingsStore } from '../../../../hooks/Zustand/useSettingsStore'
+import { useContentClassStore } from '../../../../hooks/Zustand/useContentClassStore'
+import { useOrderToggleStore } from '../../../../hooks/Zustand/useOrderToggleStore'
 import { faArrowDown91, faArrowUp91 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 

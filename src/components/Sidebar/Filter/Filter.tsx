@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import FilterButton from './FilterButton'
 import FilterOption from './FilterOption'
-import { useSettingsStore } from '../../../hooks/useSettingsStore'
+import { useSettingsStore } from '../../../hooks/Zustand/useSettingsStore'
 import { DefaultValuesType } from '../../../global/types'
-import { useResetButtonStore } from '../../../hooks/useResetButtonStore'
+import { useResetButtonStore } from '../../../hooks/Zustand/useResetButtonStore'
 
 type FilterProps = {
   label: string

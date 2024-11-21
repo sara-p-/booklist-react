@@ -10,9 +10,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import SortButton from './SortButton/SortButton'
 import { useEffect, useState } from 'react'
-import { useResetButtonStore } from '../../../hooks/useResetButtonStore'
-import { useSettingsStore } from '../../../hooks/useSettingsStore'
-import { useOrderToggleStore } from '../../../hooks/useOrderToggleStore'
+import { useResetButtonStore } from '../../../hooks/Zustand/useResetButtonStore'
+import { useSettingsStore } from '../../../hooks/Zustand/useSettingsStore'
+import { useOrderToggleStore } from '../../../hooks/Zustand/useOrderToggleStore'
 
 export default function SortBox() {
   const [sortValue, setSortValue] = useState<string>('series')

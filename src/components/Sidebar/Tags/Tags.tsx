@@ -1,8 +1,8 @@
 import './Tags.css'
 import Fieldset from '../Fieldset/Fieldset'
-import { useUpdateBooksStore } from '../../../hooks/useUpdateBookStore'
+import { useUpdateBooksStore } from '../../../hooks/Zustand/useUpdateBookStore'
 import Tag from './Tag/Tag'
-import { useDataStore } from '../../../hooks/useDataStore'
+import { useDataStore } from '../../../hooks/Zustand/useDataStore'
 import { filterCurrentTags } from '../../../utils/filter-utils'
 
 export default function Tags() {

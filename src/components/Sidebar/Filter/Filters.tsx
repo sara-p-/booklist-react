@@ -3,7 +3,7 @@ import { simplifyAndSort } from '../../../utils/array-utils'
 import Fieldset from '../Fieldset/Fieldset'
 import Filter from './Filter'
 import { BookType } from '../../../global/types'
-import { useDataStore } from '../../../hooks/useDataStore'
+import { useDataStore } from '../../../hooks/Zustand/useDataStore'
 
 export default function Filters() {
   // Get the book data object from the Zustand store

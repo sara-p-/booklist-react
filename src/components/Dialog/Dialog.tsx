@@ -10,8 +10,8 @@ import { forwardRef, useImperativeHandle, useRef } from 'react'
 import { BookType } from '../../global/types'
 import { BookContent } from '../Main/Book/BookContent'
 import { createImageUrl, getNextBook } from '../../utils/utilities'
-import { useUpdateBooksStore } from '../../hooks/useUpdateBookStore'
-import { useCurrentBookStore } from '../../hooks/useCurrentBookStore'
+import { useUpdateBooksStore } from '../../hooks/Zustand/useUpdateBookStore'
+import { useCurrentBookStore } from '../../hooks/Zustand/useCurrentBookStore'
 import { filterDescription } from '../../utils/filter-utils'
 
 type DialogProps = {

@@ -1,5 +1,5 @@
-import { useResetButtonStore } from '../../../hooks/useResetButtonStore'
-import { useSettingsStore } from '../../../hooks/useSettingsStore'
+import { useResetButtonStore } from '../../../hooks/Zustand/useResetButtonStore'
+import { useSettingsStore } from '../../../hooks/Zustand/useSettingsStore'
 import './ResetButton.css'
 
 export default function ResetButton() {

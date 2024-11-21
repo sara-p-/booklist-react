@@ -1,6 +1,6 @@
 import { create } from 'zustand'
-import { DefaultValuesType } from '../global/types'
-import { DEFAULT_VALUES } from '../global/global-variables'
+import { DefaultValuesType } from '../../global/types'
+import { DEFAULT_VALUES } from '../../global/global-variables'
 
 type SettingsStore = {
   settings: DefaultValuesType

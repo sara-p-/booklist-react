@@ -96,3 +96,23 @@ export function filterDescription(description: string) {
 
   return pArray
 }
+
+// Function to filter the booklist array by the "sort" setting
+export function sortBooks(books: BookType[], sortSetting: string) {
+  // ******************** SORTING *********************//
+  // Make an array of the item to group by (example: Series)
+  const sortGroup: string[] = books.map((object) => {
+    return (object[sortSetting as keyof BookType] ?? '') as string
+  })
+  // Filter out the duplicates
+  const arrayToSort = removeDuplicates(sortGroup)
+  // For each item in arrayToSort, loop through the original Array and sort by the arrayToSort values
+  const newArray = arrayToSort.map((item) => {
+    const groupArray = books.filter(
+      (name) => name[sortSetting as keyof BookType] == item
+    )
+    return { sort: item, groupArray }
+  })
+
+  return newArray
+}
