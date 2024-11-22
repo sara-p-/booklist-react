@@ -50,7 +50,7 @@ export function BookContent({ book }: BookContentProps) {
           <strong>length:</strong> {book.length} pages
         </p>
         <p className='book-info-item book-rating' data-label='rating'>
-          <strong>rating:</strong> {book.rating} / 10
+          <strong>rating:</strong> {book.rating}/10
         </p>
       </div>
     </div>

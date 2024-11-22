@@ -71,7 +71,7 @@ export function filterTagsArray(books: BookType[], tags: string[]) {
 
 export function filterListHeadings(books: BookType[], sortSetting: string) {
   let firstBooks: { sort: string; id: string }[] = []
-  if (sortSetting === 'series' || sortSetting === 'year') {
+  if (sortSetting !== 'title' && sortSetting !== 'length') {
     // Make an array of just the series and remove the duplicates
     const array = books.map((b) => ({
       sort: (b[sortSetting as keyof BookType] as string) ?? '',
@@ -83,7 +83,6 @@ export function filterListHeadings(books: BookType[], sortSetting: string) {
         array.findIndex((t) => t.sort === book.sort) === index
     )
   }
-
   return firstBooks
 }
 

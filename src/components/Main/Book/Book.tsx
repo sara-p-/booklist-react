@@ -22,7 +22,7 @@ export default function Book({ book, handleOpenDialog }: BookProps) {
           alt={`Book cover of ${book.title}`}
         />
         <BookContent book={book} />
-        <h4 className='h1 book-rating'>{book.rating} / 10</h4>
+        <h4 className='h1 book-rating'>{book.rating}/10</h4>
       </div>
     </button>
   )

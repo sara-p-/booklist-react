@@ -6,29 +6,18 @@ import Dialog from './components/Dialog/Dialog'
 import useBookInfo from './hooks/useBookInfo'
 import useDialogData from './hooks/useDialogData'
 import { useContentClassStore } from './hooks/Zustand/useContentClassStore'
-import { useListHeadingStore } from './hooks/Zustand/useListHeadingStore'
-import { useSettingsStore } from './hooks/Zustand/useSettingsStore'
-import { Fragment, useEffect } from 'react'
-import { filterListHeadings } from './utils/filter-utils'
+import { Fragment } from 'react'
+import useListHeadings from './hooks/useListHeadings'
 
 function App() {
-  // // get the list headings from the useListHeadingStore hook
-  const setListHeadings = useListHeadingStore((state) => state.setListHeadings)
-  const listHeadings = useListHeadingStore((state) => state.listHeadings)
-
   // Get the updated book data object from the useBookInfo hook
   const { books } = useBookInfo()
   // Get the content class from the Zustand store
   const contentClass = useContentClassStore((state) => state.contentClass)
   // Get the the info from the useDialogData hook
   const { dialogRef, handleOpenDialog, currentBook } = useDialogData()
-  // Get the settings from the Zustand store
-  const sortSetting = useSettingsStore((state) => state.settings.sort)
-
-  // Set the list headings when the sort setting changes
-  useEffect(() => {
-    setListHeadings(filterListHeadings(books, sortSetting))
-  }, [sortSetting, books, setListHeadings])
+  // Get the list headings to use in List View from the useListHeadings hook
+  const { listHeadings, sortSetting } = useListHeadings(books)
 
   return (
     <div className='box'>
@@ -43,6 +32,7 @@ function App() {
                     <Fragment key={book.id}>
                       <p className='list-heading'>
                         {sortSetting}: {book[sortSetting as keyof BookType]}
+                        {sortSetting === 'rating' && '/10'}
                       </p>
                       <Book
                         book={book}
