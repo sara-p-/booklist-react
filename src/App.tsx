@@ -8,6 +8,7 @@ import useDialogData from './hooks/useDialogData'
 import { useContentClassStore } from './hooks/Zustand/useContentClassStore'
 import { Fragment } from 'react'
 import useListHeadings from './hooks/useListHeadings'
+import MobileMenu from './components/MobileMenu/MobileMenu/MobileMenu'
 
 function App() {
   // Get the updated book data object from the useBookInfo hook
@@ -54,6 +55,7 @@ function App() {
         </div>
       </div>
       <Dialog ref={dialogRef} bookId={currentBook} />
+      <MobileMenu />
     </div>
   )
 }

@@ -8,5 +8,5 @@ export const DEFAULT_VALUES: DefaultValuesType = {
   sort: 'series',
   author: '',
   series: '',
-  tags: '',
+  tags: [],
 }
