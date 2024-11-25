@@ -4,12 +4,10 @@ import { useSettingsStore } from '../../../hooks/Zustand/useSettingsStore'
 import { DefaultValuesType } from '../../../global/types'
 import MobilePanelButton from '../MobilePanelButton/MobilePanelButton'
 import { useRef } from 'react'
-import { useMobilePanelStore } from '../../../hooks/Zustand/useMobilePanelStore'
 
 export default function MobileMenu() {
   const panelRef = useRef<HTMLDivElement[]>([])
   const settings = useSettingsStore((state) => state.settings)
-  const setActivePanel = useMobilePanelStore((state) => state.setActivePanel)
 
   const handlePanelClick = (title: string) => {
     const panel = panelRef.current.find(
@@ -17,7 +15,6 @@ export default function MobileMenu() {
     )
     if (panel) {
       panel.classList.toggle('active')
-      setActivePanel(title)
     }
   }
 

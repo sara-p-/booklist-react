@@ -80,3 +80,35 @@ export function orderBooks(
 
   return { subArrays, orderedArray }
 }
+
+// Function to create the arrays for the mobile menu options
+export function createMobileMenuOptions(option: string, data: BookType[]) {
+  let optionsArray: string[] = []
+
+  switch (option) {
+    case 'theme':
+      optionsArray = ['light', 'dark']
+      break
+    case 'view':
+      optionsArray = ['list', 'grid']
+      break
+    case 'order':
+      optionsArray = ['asc', 'desc']
+      break
+    case 'sort':
+      optionsArray = ['series', 'title', 'rating', 'year', 'length']
+      break
+    case 'author':
+      optionsArray = data
+        ? simplifyAndSort(data.map((book: BookType) => book.author))
+        : []
+      break
+    case 'series':
+      optionsArray = data
+        ? simplifyAndSort(data.map((book: BookType) => book.series))
+        : []
+      break
+  }
+
+  return optionsArray
+}

@@ -1,3 +1,5 @@
+import { useId } from 'react'
+
 type MobileRadioButtonProps = {
   label: string
   name: string
@@ -9,10 +11,20 @@ export default function MobileRadioButton({
   name,
   value,
 }: MobileRadioButtonProps) {
+  const id = useId()
+  const radioId = `radio-${id}`
   return (
     <div className='mobile-radio-button'>
-      <input type='radio' id='radio-button' name={name} value={value} />
-      <label htmlFor='radio-button'>{label}</label>
+      <input
+        className='mobile-radio'
+        type='radio'
+        id={radioId}
+        name={name}
+        value={value}
+      />
+      <label className='mobile-radio-label' htmlFor={radioId}>
+        {label}
+      </label>
     </div>
   )
 }

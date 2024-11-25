@@ -103,3 +103,42 @@
     margin: 0;
   }
 }
+
+/* Mobile Radio Buttons */
+.mobile-radio-button,
+.mobile-tag-button {
+  width: 100%;
+  &:has(.mobile-tag:disabled) {
+    display: none;
+  }
+  .mobile-radio,
+  .mobile-tag {
+    position: absolute;
+    left: 0;
+    opacity: 0;
+  }
+  .mobile-radio-label,
+  .mobile-tag-label {
+    padding: 16px;
+    color: var(--primary);
+    background-color: var(--secondary);
+    cursor: pointer;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    border-bottom: 3px solid var(--primary);
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 1;
+    margin: 0;
+    &:hover,
+    &.active {
+      background-color: var(--hover);
+    }
+  }
+  .mobile-radio:checked + .mobile-radio-label,
+  .mobile-tag:checked + .mobile-tag-label {
+    background-color: var(--primary);
+    color: var(--secondary);
+  }
+}
