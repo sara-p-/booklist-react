@@ -1,0 +1,167 @@
+.dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100dvh;
+  min-height: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+  z-index: 5;
+
+  &::backdrop {
+    background-color: var(--secondary);
+    opacity: 95%;
+  }
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  @media only screen and (min-width: 992px) {
+    height: 100%;
+    flex-wrap: nowrap;
+  }
+}
+
+.item {
+  width: 100%;
+  max-width: 800px;
+  height: 100%;
+  min-height: 300px;
+  max-height: 60%;
+  background-color: var(--secondary);
+  color: var(--primary);
+  border: 7px solid var(--primary);
+  position: relative;
+  overflow: scroll;
+  margin: 72px 16px 0 16px;
+  @media only screen and (min-width: 992px) {
+    margin: 0;
+  }
+}
+
+.itemWrapper {
+  width: auto;
+  height: 100%;
+  display: block;
+  padding: 12px;
+  @media only screen and (min-width: 992px) {
+    padding: 20px;
+  }
+}
+
+.titleRow {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  gap: 20px;
+}
+
+.image {
+  width: 100%;
+  max-width: 140px;
+  height: auto;
+  /* margin-right: 20px; */
+  display: none;
+  @media only screen and (min-width: 992px) {
+    display: block;
+  }
+}
+
+.bookContent {
+  padding: 0;
+}
+
+.bookTitle {
+  padding: 0;
+  margin-bottom: 12px;
+  font-weight: 900;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  @media only screen and (min-width: 992px) {
+    margin-bottom: 8px;
+    font-size: 1.75rem;
+  }
+}
+.bookAuthor {
+  margin-bottom: 32px;
+  line-height: 1;
+  font-weight: 500;
+  font-size: 1.3rem;
+  @media only screen and (min-width: 992px) {
+    margin-bottom: 12px;
+  }
+}
+
+.bookSeries,
+.bookNumber,
+.bookYear,
+.bookLength,
+.bookTags,
+.bookRating,
+.tags,
+.rating {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  line-height: 1;
+  font-weight: 500;
+  @media only screen and (min-width: 992px) {
+    font-size: 14px;
+  }
+}
+
+.tags,
+.rating {
+  display: block;
+}
+
+.tags {
+  line-height: 1.2;
+}
+
+.closeButton {
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  color: var(--medium-grey);
+  padding: 0;
+  margin: 0;
+  appearance: none;
+  margin-left: auto;
+  cursor: pointer;
+  line-height: 1;
+  i {
+    color: var(--primary);
+  }
+  &:hover i {
+    color: var(--medium-grey);
+  }
+}
+
+.bookDivider {
+  border: none;
+  height: 2px;
+  background-color: var(--primary);
+  width: 200px;
+  margin-right: 100%;
+}
+
+.tagsBox {
+  /* border-bottom: 2px solid var(--primary); */
+  margin-bottom: 2rem;
+}
+
+.descriptionRow {
+  padding-bottom: 2rem;
+}

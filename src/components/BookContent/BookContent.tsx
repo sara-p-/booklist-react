@@ -1,6 +1,8 @@
+import styles from './BookContent.module.css'
+import bookStyles from '../Book/Book.module.css'
 import { useEffect, useState } from 'react'
-import { BookType } from '../../../global/types'
-import { useSettingsStore } from '../../../hooks/Zustand/useSettingsStore'
+import { BookType } from '../../global/types'
+import { useSettingsStore } from '../../hooks/Zustand/useSettingsStore'
 
 type BookContentProps = {
   book: BookType
@@ -26,30 +28,27 @@ export function BookContent({ book }: BookContentProps) {
   }, [sortSettings])
 
   return (
-    <div className='book-content'>
-      <div className='book-info'>
-        <h3 className='book-title'>{book.title}</h3>
+    <div className={`${bookStyles.content} ${styles.content}`}>
+      <div className={styles.info}>
+        <h3 className={styles.title}>{book.title}</h3>
         <h4 className='book-author'>{book.author}</h4>
-        <hr className='book-divider' />
-        <p className='book-info-item book-series active' data-label='series'>
+        <hr className={styles.divider} />
+        <p className={`${styles.infoItem}`} data-label='series'>
           <strong>series:</strong> {book.series}
         </p>
-        <p className='book-info-item book-number active' data-label='number'>
+        <p className={`${styles.infoItem}`} data-label='number'>
           <strong>book #:</strong> {book.number}
         </p>
-        <p
-          className={`book-info-item book-year ${yearClass}`}
-          data-label='year'
-        >
+        <p className={`${styles.infoItem} ${yearClass}`} data-label='year'>
           <strong>year:</strong> {book.year}
         </p>
-        <p
-          className={`book-info-item book-length ${lengthClass}`}
-          data-label='length'
-        >
+        <p className={`${styles.infoItem} ${lengthClass}`} data-label='length'>
           <strong>length:</strong> {book.length} pages
         </p>
-        <p className='book-info-item book-rating' data-label='rating'>
+        <p
+          className={`${styles.infoItem} ${styles.rating}`}
+          data-label='rating'
+        >
           <strong>rating:</strong> {book.rating}/10
         </p>
       </div>

@@ -1,4 +1,4 @@
-import './Dialog.css'
+import styles from './Dialog.module.css'
 import DialogButton from './DialogButton/DialogButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -8,7 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { forwardRef, useImperativeHandle, useRef } from 'react'
 import { BookType } from '../../global/types'
-import { BookContent } from '../Main/Book/BookContent'
+import { BookContent } from '../BookContent/BookContent'
 import { createImageUrl, getNextBook } from '../../utils/utilities'
 import { useUpdateBooksStore } from '../../hooks/Zustand/useUpdateBookStore'
 import { useCurrentBookStore } from '../../hooks/Zustand/useCurrentBookStore'
@@ -35,39 +35,39 @@ const Dialog = forwardRef(({ bookId }: DialogProps, ref) => {
   if (!book) return null
 
   return (
-    <dialog className='dialog' ref={dialogRef}>
-      <div className='dialog-wrapper'>
+    <dialog className={styles.dialog} ref={dialogRef}>
+      <div className={styles.dialogWrapper}>
         <DialogButton
           label='Previous book'
           icon={<FontAwesomeIcon icon={faChevronLeft} />}
           direction='previous'
           onClick={() => getNextBook('previous', bookId, books, setCurrentBook)}
         />
-        <div className='dialog-item'>
-          <div className='dialog-item-wrapper'>
-            <div className='dialog-title-row'>
+        <div className={styles.item}>
+          <div className={styles.itemWrapper}>
+            <div className={styles.titleRow}>
               <img
-                className='dialog-image'
+                className={styles.image}
                 src={book && createImageUrl(book.title)}
                 alt={book ? `Book cover of ${book.title}` : 'Book cover'}
               />
               <BookContent book={book} />
               <button
-                className='dialog-close-button'
+                className={styles.closeButton}
                 onClick={() => dialogRef.current?.close()}
               >
                 <FontAwesomeIcon icon={faXmark} />
               </button>
             </div>
-            <div className='dialog-description-row'>
-              <div className='dialog-tags-box'>
-                <h4 className='dialog-tags-heading'>
+            <div className={styles.descriptionRow}>
+              <div className={styles.tagsBox}>
+                <h4 className={styles.tagsHeading}>
                   <strong>tags:</strong>
                 </h4>
-                <p className='dialog-tags'>{book.tags}</p>
+                <p className={styles.tags}>{book.tags}</p>
               </div>
-              <div className='dialog-description'>
-                <h4 className='dialog-description-heading'>
+              <div className={styles.description}>
+                <h4 className={styles.descriptionHeading}>
                   <strong>description:</strong>
                 </h4>
                 {book.description &&

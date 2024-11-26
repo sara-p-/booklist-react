@@ -1,3 +1,5 @@
+import styles from './DialogButton.module.css'
+
 type DialogButtonProps = {
   label: string
   icon: React.ReactNode
@@ -12,7 +14,7 @@ export default function DialogButton({
   onClick,
 }: DialogButtonProps) {
   return (
-    <button className={`dialog-button ${direction}`} onClick={onClick}>
+    <button className={`${styles.button} ${direction}`} onClick={onClick}>
       <span className='visually-hidden'>{label}</span>
       {icon}
     </button>

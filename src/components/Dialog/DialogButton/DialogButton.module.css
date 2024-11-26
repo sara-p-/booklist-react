@@ -1,0 +1,32 @@
+.button {
+  flex: auto;
+  height: 21%;
+  border: none;
+  color: var(--hover);
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 4rem;
+  @media only screen and (min-width: 992px) {
+    font-size: 3rem;
+    height: 100%;
+  }
+  i {
+    color: var(--primary);
+  }
+  &:hover i {
+    color: var(--medium-grey);
+    /* background-color: var(--primary); */
+  }
+  &[data-direction='prev'] {
+    order: 2;
+    @media only screen and (min-width: 992px) {
+      order: inherit;
+    }
+  }
+  &[data-direction='next'] {
+    order: 3;
+    @media only screen and (min-width: 992px) {
+      order: inherit;
+    }
+  }
+}
