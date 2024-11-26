@@ -23,7 +23,9 @@
 }
 .divider {
   width: 175px;
-  border-bottom: 2px solid var(--primary);
+  height: 2px;
+  background-color: var(--primary);
+  border: none;
   margin: 0 0 8px 0;
 }
 .infoItem {

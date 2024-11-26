@@ -2,6 +2,7 @@ import styles from './Book.module.css'
 import { createImageUrl } from '../../utils/utilities'
 import { BookContent } from '../BookContent/BookContent'
 import { BookType } from '../../global/types'
+import { useListClassStore } from '../../hooks/Zustand/useListClassStore'
 
 type BookProps = {
   book: BookType
@@ -9,9 +10,10 @@ type BookProps = {
 }
 
 export default function Book({ book, handleOpenDialog }: BookProps) {
+  const { listClass } = useListClassStore((state) => state)
   return (
     <button
-      className={styles.button}
+      className={`${listClass ? styles.list : ''} ${styles.button} `}
       data-id={book.id}
       onClick={handleOpenDialog}
     >

@@ -1,5 +1,5 @@
 import styles from './Dialog.module.css'
-import DialogButton from './DialogButton/DialogButton'
+import DialogButton from '../DialogButton/DialogButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faChevronLeft,

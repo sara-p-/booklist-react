@@ -1,0 +1,13 @@
+.listHeading {
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  display: block;
+  &:first-of-type {
+    margin-top: 0;
+  }
+  &.hide {
+    display: none;
+  }
+}

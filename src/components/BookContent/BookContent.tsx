@@ -31,7 +31,7 @@ export function BookContent({ book }: BookContentProps) {
     <div className={`${bookStyles.content} ${styles.content}`}>
       <div className={styles.info}>
         <h3 className={styles.title}>{book.title}</h3>
-        <h4 className='book-author'>{book.author}</h4>
+        <h4 className={styles.author}>{book.author}</h4>
         <hr className={styles.divider} />
         <p className={`${styles.infoItem}`} data-label='series'>
           <strong>series:</strong> {book.series}

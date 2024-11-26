@@ -1,7 +1,7 @@
 import './Toggle.css'
 import { useEffect, useState } from 'react'
 import { useSettingsStore } from '../../../../hooks/Zustand/useSettingsStore'
-import { useContentClassStore } from '../../../../hooks/Zustand/useContentClassStore'
+import { useListClassStore } from '../../../../hooks/Zustand/useListClassStore'
 import { useOrderToggleStore } from '../../../../hooks/Zustand/useOrderToggleStore'
 import { faArrowDown91, faArrowUp91 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -27,7 +27,7 @@ export default function Toggle({
   const settings = useSettingsStore((state) => state.settings)
   const setSettings = useSettingsStore((state) => state.setSettings)
   // Get the content class from the Zustand store
-  const setContentClass = useContentClassStore((state) => state.setContentClass)
+  const setListClass = useListClassStore((state) => state.setListClass)
   // Set the initial state of the toggle based on the order toggle state
   useEffect(() => {
     if (toggleId === 'order') {
@@ -41,7 +41,7 @@ export default function Toggle({
     setIsChecked(newValue)
     setSettings({ ...settings, [toggleId.toLowerCase()]: newValue })
     if (toggleId === 'view') {
-      setContentClass(newValue)
+      setListClass(newValue)
     }
   }
 
