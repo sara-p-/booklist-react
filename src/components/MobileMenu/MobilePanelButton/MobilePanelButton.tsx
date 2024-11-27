@@ -1,3 +1,5 @@
+import buttonStyles from './MobilePanelButton.module.css'
+
 type MobilePanelButtonProps = {
   title: string
   value: string
@@ -10,9 +12,9 @@ export default function MobilePanelButton({
   onClick,
 }: MobilePanelButtonProps) {
   return (
-    <button className='mobile-panel-button' onClick={onClick}>
-      <h2 className='title'>{title}</h2>
-      <p className='value'>{value}</p>
+    <button className={buttonStyles.button} onClick={onClick}>
+      <h2 className={buttonStyles.title}>{title}</h2>
+      <p className={buttonStyles.value}>{value}</p>
     </button>
   )
 }

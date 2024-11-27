@@ -1,29 +1,35 @@
+import radioButtonStyles from './MobileRadioButton.module.css'
 import { useId } from 'react'
 
 type MobileRadioButtonProps = {
-  label: string
   name: string
   value: string
+  checked: boolean
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export default function MobileRadioButton({
-  label,
   name,
   value,
+  checked,
+  onChange,
 }: MobileRadioButtonProps) {
   const id = useId()
   const radioId = `radio-${id}`
+
   return (
-    <div className='mobile-radio-button'>
+    <div className={radioButtonStyles.button}>
       <input
-        className='mobile-radio'
+        className={radioButtonStyles.radio}
         type='radio'
         id={radioId}
         name={name}
         value={value}
+        onChange={onChange}
+        checked={checked}
       />
-      <label className='mobile-radio-label' htmlFor={radioId}>
-        {label}
+      <label className={radioButtonStyles.label} htmlFor={radioId}>
+        {value}
       </label>
     </div>
   )

@@ -14,7 +14,7 @@ export default function ListHeading({ book }: ListHeadingProps) {
   const sort = useSettingsStore((state) => state.settings.sort)
 
   return (
-    <p className={`${styles.listHeading} ${listClass && styles.hide}`}>
+    <p className={`${styles.listHeading} ${listClass || styles.hide}`}>
       {sort}: {book[sort as keyof BookType]}
       {sort === 'rating' && '/10'}
     </p>
