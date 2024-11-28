@@ -39,9 +39,34 @@ export default function Toggle({
   function handleToggleChange(): void {
     const newValue = !isChecked
     setIsChecked(newValue)
-    setSettings({ ...settings, [toggleId.toLowerCase()]: newValue })
-    if (toggleId === 'view') {
-      setListClass(newValue)
+    // setSettings({ ...settings, [toggleId.toLowerCase()]: newValue })
+    // if (toggleId === 'view') {
+    //   setListClass(newValue)
+    // }
+
+    switch (toggleId) {
+      case 'theme':
+        if (!isChecked) {
+          setSettings({ ...settings, theme: 'light' })
+        } else {
+          setSettings({ ...settings, theme: 'dark' })
+        }
+        break
+      case 'view':
+        setListClass(newValue)
+        if (!isChecked) {
+          setSettings({ ...settings, view: 'grid' })
+        } else {
+          setSettings({ ...settings, view: 'list' })
+        }
+        break
+      case 'order':
+        if (!isChecked) {
+          setSettings({ ...settings, order: 'desc' })
+        } else {
+          setSettings({ ...settings, order: 'asc' })
+        }
+        break
     }
   }
 

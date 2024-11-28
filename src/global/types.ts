@@ -22,9 +22,9 @@ export type BookType = {
 
 // default type for the booklist filters
 export type DefaultValuesType = {
-  theme: boolean
-  view: boolean
-  order: boolean
+  theme: string
+  view: string
+  order: string
   sort: string
   author: string
   series: string

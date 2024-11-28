@@ -1,5 +1,5 @@
 import panelStyles from './MobilePanel.module.css'
-import { forwardRef } from 'react'
+import { forwardRef, useEffect, useState } from 'react'
 import { MobilePanelHeader } from '../MobilePanelHeader/MobilePanelHeader'
 import { useDataStore } from '../../../hooks/Zustand/useDataStore'
 import { createMobileMenuOptions } from '../../../utils/array-utils'
@@ -18,6 +18,9 @@ type MobilePanelProps = {
 const MobilePanel = forwardRef<HTMLDivElement, MobilePanelProps>(
   ({ title, children, onBackButtonClick, activePanel }, ref) => {
     const data = useDataStore((state) => state.data)
+    const [newSettings, setNewSettings] = useState<DefaultValuesType>(
+      {} as DefaultValuesType
+    )
     // Create the options for the panel based on the data object
     const options = createMobileMenuOptions(title, data)
     // get the settings from the store
@@ -30,11 +33,15 @@ const MobilePanel = forwardRef<HTMLDivElement, MobilePanelProps>(
 
     function handleRadioChange(e: React.ChangeEvent<HTMLInputElement>) {
       const value = e.currentTarget.value
-      setSettings((prevSettings: DefaultValuesType) => ({
-        ...prevSettings,
-        [title as keyof DefaultValuesType]: value,
-      }))
+      // Update settings immediately and ensure the new value is used
+      const newSettings = { ...settings, [title]: value }
+      setSettings(newSettings)
     }
+
+    // Update the newSettings state whenever settings change so that the checked state is updated
+    useEffect(() => {
+      setNewSettings(settings)
+    }, [settings])
 
     return (
       <div className={panelClassName} data-panel={title} ref={ref}>
@@ -46,15 +53,15 @@ const MobilePanel = forwardRef<HTMLDivElement, MobilePanelProps>(
           {children
             ? children
             : options.map((option) => {
+                const isChecked =
+                  newSettings[title as keyof DefaultValuesType] === option
                 return (
                   <MobileRadioButton
                     key={option}
                     name={title}
                     value={option}
-                    checked={
-                      settings[title as keyof DefaultValuesType] === option
-                    }
                     onChange={handleRadioChange}
+                    checked={isChecked}
                   />
                 )
               })}

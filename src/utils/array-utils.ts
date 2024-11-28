@@ -50,7 +50,7 @@ export function orderSeries(
 export function orderBooks(
   array: { sort: string; groupArray: BookType[] }[],
   sort: string,
-  order: boolean
+  order: string
 ) {
   // ******************** ASCENDING VS DESCENDING ORDER **************** //
   // Sort by the sort parameter
@@ -71,7 +71,7 @@ export function orderBooks(
   }
 
   // If 'order' is true, switch from ascending to descending order
-  if (order) orderedArray.reverse()
+  if (order === 'desc') orderedArray.reverse()
 
   // Create one giant array with a bunch of sub arrays
   const subArrays = orderedArray.map(({ groupArray }) => {
