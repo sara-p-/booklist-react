@@ -7,10 +7,14 @@ import Main from './components/Main/Main'
 import { useRef } from 'react'
 // import { useDialogRefStore } from './hooks/Zustand/useDialogRefStore'
 import MobileMenu from './components/MobileMenu/MobileMenu/MobileMenu'
+import Header from './components/Sidebar/Header/Header'
+import { useMobileMenuClassStore } from './hooks/Zustand/useMobileMenuClassStore'
 
 function App() {
   // Create a ref for the mobile Menu
   const menuRef = useRef<HTMLDivElement>(null)
+  // Create a state for the menu active class
+  const setIsActive = useMobileMenuClassStore((state) => state.setIsActive)
   // Create a ref for the dialog
   // const dialogRef = useRef<HTMLDialogElement>(null)
 
@@ -22,13 +26,13 @@ function App() {
 
   // Create the function to open the mobile menu
   function handleMobileMenuClick() {
-    menuRef.current?.classList.toggle('active')
-    console.log(menuRef.current)
+    setIsActive(true)
   }
 
   return (
     <div className='box'>
-      <Sidebar handleMobileMenuClick={handleMobileMenuClick} />
+      <Header handleMobileMenuClick={handleMobileMenuClick} />
+      <Sidebar />
       <Main />
       {/* <Dialog ref={dialogRef} bookId={currentBook} /> */}
       <MobileMenu ref={menuRef} />
