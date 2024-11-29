@@ -3,13 +3,14 @@ import MobilePanel from '../MobilePanel/MobilePanel'
 import { useSettingsStore } from '../../../hooks/Zustand/useSettingsStore'
 // import { DefaultValuesType } from '../../../global/types'
 // import MobilePanelButton from '../MobilePanelButton/MobilePanelButton'
-import { useRef, useState } from 'react'
+import { forwardRef, useRef, useState } from 'react'
 import OptionsPanel from '../OptionsPanel/OptionsPanel'
 
-export default function MobileMenu() {
+function MobileMenu() {
+  const menuRef = useRef<HTMLDivElement>(null)
   const panelRef = useRef<HTMLDivElement[]>([])
   const settings = useSettingsStore((state) => state.settings)
-  const [activePanel, setActivePanel] = useState<string | null>(null)
+  const [activePanel, setActivePanel] = useState<string | null>('options')
 
   const handlePanelClick = (
     title: string,
@@ -26,11 +27,18 @@ export default function MobileMenu() {
 
   function handleBackButtonClick() {
     setActivePanel(null)
+    // if (activePanel === 'options') {
+    //   console.log('options')
+    // }
   }
 
   return (
-    <div className={menuStyles.menu}>
-      <OptionsPanel handlePanelClick={handlePanelClick} panelRef={panelRef} />
+    <div className={menuStyles.menu} ref={menuRef}>
+      <OptionsPanel
+        handlePanelClick={handlePanelClick}
+        panelRef={panelRef}
+        onBackButtonClick={handleBackButtonClick}
+      />
 
       {Object.keys(settings).map((key) => {
         return (
@@ -49,3 +57,5 @@ export default function MobileMenu() {
     </div>
   )
 }
+
+export default forwardRef<HTMLDivElement>(MobileMenu)

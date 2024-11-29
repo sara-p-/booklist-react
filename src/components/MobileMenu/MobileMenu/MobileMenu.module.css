@@ -4,12 +4,12 @@
   position: fixed;
   top: 0;
   right: 0;
-  /* transform: translateX(100%);
-  transition: transform 300ms; */
+  transform: translateX(100%);
+  transition: transform 300ms;
   z-index: 2;
   overflow: hidden;
   background-color: var(--secondary);
-  &.open {
+  &.active {
     transform: translateX(0);
   }
 }

@@ -4,7 +4,7 @@ import { DefaultValuesType } from './types'
 export const DEFAULT_VALUES: DefaultValuesType = {
   theme: 'light',
   view: 'grid',
-  order: 'desc',
+  order: 'asc',
   sort: 'series',
   author: '',
   series: '',

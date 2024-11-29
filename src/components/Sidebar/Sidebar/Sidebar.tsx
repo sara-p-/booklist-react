@@ -6,10 +6,14 @@ import Filters from '../Filter/Filters'
 import Tags from '../Tags/Tags'
 import ResetButton from '../ResetButton/ResetButton'
 
-export default function Sidebar() {
+type SidebarProps = {
+  handleMobileMenuClick: () => void
+}
+
+export default function Sidebar({ handleMobileMenuClick }: SidebarProps) {
   return (
     <>
-      <Header />
+      <Header handleMobileMenuClick={handleMobileMenuClick} />
       <div className='sidebar'>
         <Toggles />
         <SortBox />

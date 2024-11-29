@@ -9,16 +9,18 @@ type OptionsPanelProps = {
     panelRef: React.RefObject<HTMLDivElement[]>
   ) => void
   panelRef: React.RefObject<HTMLDivElement[]>
+  onBackButtonClick: () => void
 }
 
 export default function OptionsPanel({
   handlePanelClick,
   panelRef,
+  onBackButtonClick,
 }: OptionsPanelProps) {
   const settings = useSettingsStore((state) => state.settings)
 
   return (
-    <MobilePanel title='options'>
+    <MobilePanel title='options' onBackButtonClick={onBackButtonClick}>
       {Object.keys(settings).map((key) => {
         return (
           <MobilePanelButton
