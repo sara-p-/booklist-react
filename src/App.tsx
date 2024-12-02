@@ -7,7 +7,7 @@ import Main from './components/Main/Main'
 import { useRef } from 'react'
 // import { useDialogRefStore } from './hooks/Zustand/useDialogRefStore'
 import MobileMenu from './components/MobileMenu/MobileMenu/MobileMenu'
-import Header from './components/Sidebar/Header/Header'
+import Header from './components/Header/Header'
 import { useMobileMenuClassStore } from './hooks/Zustand/useMobileMenuClassStore'
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
       <Sidebar />
       <Main />
       {/* <Dialog ref={dialogRef} bookId={currentBook} /> */}
-      <MobileMenu ref={menuRef} />
+      <MobileMenu />
     </div>
   )
 }

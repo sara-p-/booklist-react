@@ -3,13 +3,16 @@ import MobilePanel from '../MobilePanel/MobilePanel'
 import { useSettingsStore } from '../../../hooks/Zustand/useSettingsStore'
 // import { DefaultValuesType } from '../../../global/types'
 // import MobilePanelButton from '../MobilePanelButton/MobilePanelButton'
-import { forwardRef, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import OptionsPanel from '../OptionsPanel/OptionsPanel'
 import { useMobileMenuClassStore } from '../../../hooks/Zustand/useMobileMenuClassStore'
 
-const MobileMenu = forwardRef<HTMLDivElement>((props, ref) => {
+export default function MobileMenu() {
+  // Create a useRef for the entire mobile menu
+  const menuRef = useRef<HTMLDivElement>(null)
   // Get the isActive state from the Zustand store to toggle the active class on the entire mobile menu
   const isActive = useMobileMenuClassStore((state) => state.isActive)
+  const setIsActive = useMobileMenuClassStore((state) => state.setIsActive)
   const panelRef = useRef<HTMLDivElement[]>([])
   const settings = useSettingsStore((state) => state.settings)
   const [activePanel, setActivePanel] = useState<string | null>('options')
@@ -31,15 +34,20 @@ const MobileMenu = forwardRef<HTMLDivElement>((props, ref) => {
     setActivePanel(null)
   }
 
+  function handleCloseMenu() {
+    menuRef.current?.classList.remove(menuStyles.active)
+    setIsActive(false)
+  }
+
   return (
     <div
       className={`${menuStyles.menu} ${isActive && menuStyles.active}`}
-      ref={ref}
+      ref={menuRef}
     >
       <OptionsPanel
         handlePanelClick={handlePanelClick}
         panelRef={panelRef}
-        onBackButtonClick={handleBackButtonClick}
+        onBackButtonClick={handleCloseMenu}
       />
 
       {Object.keys(settings).map((key) => {
@@ -58,6 +66,4 @@ const MobileMenu = forwardRef<HTMLDivElement>((props, ref) => {
       })}
     </div>
   )
-})
-
-export default MobileMenu
+}

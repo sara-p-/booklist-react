@@ -2,6 +2,7 @@ import { DefaultValuesType } from '../../../global/types'
 import MobilePanel from '../MobilePanel/MobilePanel'
 import MobilePanelButton from '../MobilePanelButton/MobilePanelButton'
 import { useSettingsStore } from '../../../hooks/Zustand/useSettingsStore'
+import { forwardRef } from 'react'
 
 type OptionsPanelProps = {
   handlePanelClick: (
@@ -9,10 +10,10 @@ type OptionsPanelProps = {
     panelRef: React.RefObject<HTMLDivElement[]>
   ) => void
   panelRef: React.RefObject<HTMLDivElement[]>
-  onBackButtonClick: () => void
+  onBackButtonClick?: () => void
 }
 
-export default function OptionsPanel({
+function OptionsPanel({
   handlePanelClick,
   panelRef,
   onBackButtonClick,
@@ -38,3 +39,5 @@ export default function OptionsPanel({
     </MobilePanel>
   )
 }
+
+export default forwardRef(OptionsPanel)
