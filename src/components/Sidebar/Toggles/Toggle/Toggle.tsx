@@ -39,10 +39,6 @@ export default function Toggle({
   function handleToggleChange(): void {
     const newValue = !isChecked
     setIsChecked(newValue)
-    // setSettings({ ...settings, [toggleId.toLowerCase()]: newValue })
-    // if (toggleId === 'view') {
-    //   setListClass(newValue)
-    // }
 
     switch (toggleId) {
       case 'theme':

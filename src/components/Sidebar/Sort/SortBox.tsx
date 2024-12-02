@@ -35,6 +35,7 @@ export default function SortBox() {
 
     if (value === 'year' || value === 'rating' || value === 'length') {
       setIsOrderChecked(true)
+      setSettings({ ...settings, sort: value, order: 'desc' })
     } else {
       setIsOrderChecked(false)
     }

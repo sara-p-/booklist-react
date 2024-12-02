@@ -1,0 +1,49 @@
+.box {
+  position: fixed;
+  width: 100%;
+  max-width: 300px;
+  left: 0;
+  bottom: 0;
+  display: none;
+  z-index: 2;
+  border-top: 3px solid var(--primary);
+  @media only screen and (min-width: 768px) {
+    display: flex;
+  }
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+}
+
+.button {
+  flex: 1;
+  background-color: var(--secondary);
+  color: var(--primary);
+  margin: 0;
+  border: none;
+  width: 100%;
+  z-index: 2;
+  appearance: none;
+  cursor: pointer;
+  padding: 0;
+  height: 46px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 0;
+  text-transform: lowercase;
+  &:hover {
+    background-color: var(--primary);
+    color: var(--secondary);
+  }
+  &.secondary {
+    background-color: var(--primary);
+    color: var(--secondary);
+    border: none;
+    &:hover {
+      background-color: var(--secondary);
+      color: var(--primary);
+    }
+  }
+}
