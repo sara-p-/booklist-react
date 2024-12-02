@@ -10,7 +10,7 @@
   font-weight: 900;
   width: 100%;
   height: 100%;
-  max-height: 300px;
+  min-height: 100%;
   cursor: pointer;
   overflow: hidden;
   color: var(--primary);
@@ -22,14 +22,14 @@
 }
 .image {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: cover;
   position: relative;
   transition: all 300ms;
 }
 
-&:hover,
-&:focus {
+.button:hover,
+.button:focus {
   img {
     transform: scale(1.05);
   }
@@ -39,6 +39,10 @@
 }
 
 .listHeading {
+  display: none;
+}
+
+.rating {
   display: none;
 }
 
@@ -82,5 +86,13 @@
     .content {
       display: flex;
     }
+  }
+}
+
+.list .rating {
+  white-space: nowrap;
+  margin-left: auto;
+  @media only screen and (min-width: 1024px) {
+    display: block;
   }
 }

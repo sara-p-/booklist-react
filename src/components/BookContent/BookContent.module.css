@@ -1,10 +1,15 @@
 .content {
+  display: none;
+}
+
+.list .content {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   height: 100%;
   width: 100%;
 }
+
 .title {
   margin-bottom: 8px;
   line-height: 1;
@@ -49,12 +54,5 @@
 &:focus {
   .divider {
     border-bottom: 2px solid var(--secondary);
-  }
-}
-.rating {
-  display: none;
-  white-space: nowrap;
-  @media only screen and (min-width: 1024px) {
-    display: block;
   }
 }
