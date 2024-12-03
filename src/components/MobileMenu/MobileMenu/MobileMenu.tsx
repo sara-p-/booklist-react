@@ -12,12 +12,13 @@ export default function MobileMenu() {
   const isActive = useMobileMenuClassStore((state) => state.isActive)
   const panelRef = useRef<HTMLDivElement[]>([])
   const settings = useSettingsStore((state) => state.settings)
-  // const [activePanel, setActivePanel] = useState<string | null>('options')
+  // Get the setActivePanel function from the Zustand store so we can set the active panel to null when the back button is clicked
   const setActivePanel = useActiveMobilePanelStore(
     (state) => state.setActivePanel
   )
   const activePanel = useActiveMobilePanelStore((state) => state.activePanel)
 
+  // Handle the click event for the panels
   const handlePanelClick = (
     title: string,
     panelRef: React.RefObject<HTMLDivElement[]>
@@ -50,7 +51,7 @@ export default function MobileMenu() {
               if (el) panelRef.current.push(el)
             }}
             activePanel={activePanel === key ? true : false}
-          ></MobilePanel>
+          />
         )
       })}
     </div>
