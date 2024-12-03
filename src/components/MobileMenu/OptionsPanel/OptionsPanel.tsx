@@ -3,6 +3,7 @@ import MobilePanel from '../MobilePanel/MobilePanel'
 import MobilePanelButton from '../MobilePanelButton/MobilePanelButton'
 import { useSettingsStore } from '../../../hooks/Zustand/useSettingsStore'
 import { forwardRef } from 'react'
+import { useMobileMenuClassStore } from '../../../hooks/Zustand/useMobileMenuClassStore'
 
 type OptionsPanelProps = {
   handlePanelClick: (
@@ -13,15 +14,17 @@ type OptionsPanelProps = {
   onBackButtonClick?: () => void
 }
 
-function OptionsPanel({
-  handlePanelClick,
-  panelRef,
-  onBackButtonClick,
-}: OptionsPanelProps) {
+function OptionsPanel({ handlePanelClick, panelRef }: OptionsPanelProps) {
   const settings = useSettingsStore((state) => state.settings)
+  // Get the setIsActive function from the Zustand store so we can close the mobile menu when the back button is clicked
+  const setIsActive = useMobileMenuClassStore((state) => state.setIsActive)
+
+  function handleBackButtonClick() {
+    setIsActive(false)
+  }
 
   return (
-    <MobilePanel title='options' onBackButtonClick={onBackButtonClick}>
+    <MobilePanel title='options' onBackButtonClick={handleBackButtonClick}>
       {Object.keys(settings).map((key) => {
         return (
           <MobilePanelButton

@@ -3,19 +3,20 @@ import MobilePanel from '../MobilePanel/MobilePanel'
 import { useSettingsStore } from '../../../hooks/Zustand/useSettingsStore'
 // import { DefaultValuesType } from '../../../global/types'
 // import MobilePanelButton from '../MobilePanelButton/MobilePanelButton'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import OptionsPanel from '../OptionsPanel/OptionsPanel'
 import { useMobileMenuClassStore } from '../../../hooks/Zustand/useMobileMenuClassStore'
-
+import { useActiveMobilePanelStore } from '../../../hooks/Zustand/useActiveMobilePanelStore'
 export default function MobileMenu() {
-  // Create a useRef for the entire mobile menu
-  const menuRef = useRef<HTMLDivElement>(null)
   // Get the isActive state from the Zustand store to toggle the active class on the entire mobile menu
   const isActive = useMobileMenuClassStore((state) => state.isActive)
-  const setIsActive = useMobileMenuClassStore((state) => state.setIsActive)
   const panelRef = useRef<HTMLDivElement[]>([])
   const settings = useSettingsStore((state) => state.settings)
-  const [activePanel, setActivePanel] = useState<string | null>('options')
+  // const [activePanel, setActivePanel] = useState<string | null>('options')
+  const setActivePanel = useActiveMobilePanelStore(
+    (state) => state.setActivePanel
+  )
+  const activePanel = useActiveMobilePanelStore((state) => state.activePanel)
 
   const handlePanelClick = (
     title: string,
@@ -34,21 +35,9 @@ export default function MobileMenu() {
     setActivePanel(null)
   }
 
-  function handleCloseMenu() {
-    menuRef.current?.classList.remove(menuStyles.active)
-    setIsActive(false)
-  }
-
   return (
-    <div
-      className={`${menuStyles.menu} ${isActive && menuStyles.active}`}
-      ref={menuRef}
-    >
-      <OptionsPanel
-        handlePanelClick={handlePanelClick}
-        panelRef={panelRef}
-        onBackButtonClick={handleCloseMenu}
-      />
+    <div className={`${menuStyles.menu} ${isActive && menuStyles.active}`}>
+      <OptionsPanel handlePanelClick={handlePanelClick} panelRef={panelRef} />
 
       {Object.keys(settings).map((key) => {
         return (

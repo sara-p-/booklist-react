@@ -17,10 +17,13 @@ type MobilePanelProps = {
 
 const MobilePanel = forwardRef<HTMLDivElement, MobilePanelProps>(
   ({ title, children, onBackButtonClick, activePanel }, ref) => {
+    // Get the original data object from the store
     const data = useDataStore((state) => state.data)
+    // Create a new settings object to hold the new values
     const [newSettings, setNewSettings] = useState<DefaultValuesType>(
       {} as DefaultValuesType
     )
+
     // Create the options for the panel based on the data object
     const options = createMobileMenuOptions(title, data)
     // get the settings from the store
@@ -45,10 +48,7 @@ const MobilePanel = forwardRef<HTMLDivElement, MobilePanelProps>(
 
     return (
       <div className={panelClassName} data-panel={title} ref={ref}>
-        <MobilePanelHeader
-          title={title}
-          onClick={() => onBackButtonClick?.()}
-        />
+        <MobilePanelHeader title={title} onClick={onBackButtonClick} />
         <div className={panelStyles.wrapper}>
           {children
             ? children
