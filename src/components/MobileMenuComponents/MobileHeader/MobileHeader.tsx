@@ -1,25 +1,26 @@
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import headerStyles from './MobileHeader.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useActiveMobilePanelStore } from '../../../../hooks/Zustand/useActiveMobilePanelStore'
+import { useActiveMobilePanelStore } from '../../../hooks/Zustand/useActiveMobilePanelStore'
+import { useMobileMenuClassStore } from '../../../hooks/Zustand/useMobileMenuClassStore'
 
 interface MobileHeaderProps {
   title: string
-  onClick?: () => void
 }
 
-export default function MobileHeader({ title, onClick }: MobileHeaderProps) {
+export default function MobileHeader({ title }: MobileHeaderProps) {
   // Get the setActivePanel function from the Zustand store so we can set the active panel to null when the back button is clicked
   const setActivePanel = useActiveMobilePanelStore(
     (state) => state.setActivePanel
   )
+  // If the header is the 'options' header, we need to close the mobile menu when the back button is clicked
+  const setIsActive = useMobileMenuClassStore((state) => state.setIsActive)
 
-  // Unless specified, the onClick Function will set the active panel to null
   function handleOnClick() {
-    if (!onClick) {
-      setActivePanel(null)
+    if (title === 'options') {
+      setIsActive(false)
     } else {
-      onClick()
+      setActivePanel('options')
     }
   }
 

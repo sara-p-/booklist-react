@@ -1,5 +1,5 @@
 import menuStyles from './MobileMenu.module.css'
-import MobilePanel from '../MobilePanel/MobilePanel'
+import MobilePanel from '../MobilePanel/MobilePanelOld'
 import { useSettingsStore } from '../../../hooks/Zustand/useSettingsStore'
 // import { DefaultValuesType } from '../../../global/types'
 // import MobilePanelButton from '../MobilePanelButton/MobilePanelButton'

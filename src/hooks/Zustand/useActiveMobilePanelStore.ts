@@ -7,7 +7,7 @@ interface ActiveMobilePanelState {
 
 export const useActiveMobilePanelStore = create<ActiveMobilePanelState>(
   (set) => ({
-    activePanel: null,
+    activePanel: 'options',
     setActivePanel: (panel) => set({ activePanel: panel }),
   })
 )

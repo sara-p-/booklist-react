@@ -1,5 +1,5 @@
 import { DefaultValuesType } from '../../../global/types'
-import MobilePanel from '../MobilePanel/MobilePanel'
+import MobilePanel from '../MobilePanel/MobilePanelOld'
 import MobilePanelButton from '../MobilePanelButton/MobilePanelButton'
 import { useSettingsStore } from '../../../hooks/Zustand/useSettingsStore'
 import { forwardRef } from 'react'

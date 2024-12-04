@@ -10,3 +10,5 @@ export const DEFAULT_VALUES: DefaultValuesType = {
   series: '',
   tags: [],
 }
+
+export const SORT_OPTIONS = ['series', 'title', 'rating', 'year', 'length']

@@ -1,4 +1,4 @@
-import ButtonBox from '../../../Button/ButtonBox'
+import ButtonBox from '../../Button/ButtonBox'
 import MobileViewButton from '../MobileViewButton/MobileViewButton'
 
 interface MobileButtonsProps {
@@ -7,7 +7,7 @@ interface MobileButtonsProps {
 
 export default function MobileButtons({ children }: MobileButtonsProps) {
   return (
-    <ButtonBox>
+    <ButtonBox isMobile>
       <MobileViewButton />
       {children}
     </ButtonBox>

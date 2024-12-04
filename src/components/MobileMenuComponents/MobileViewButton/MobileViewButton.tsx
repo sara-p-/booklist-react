@@ -1,8 +1,8 @@
-import Button from '../../../Button/Button'
+import Button from '../../Button/Button'
 
-import useBookInfo from '../../../../hooks/useBookInfo'
-import { useActiveMobilePanelStore } from '../../../../hooks/Zustand/useActiveMobilePanelStore'
-import { useMobileMenuClassStore } from '../../../../hooks/Zustand/useMobileMenuClassStore'
+import useBookInfo from '../../../hooks/useBookInfo'
+import { useActiveMobilePanelStore } from '../../../hooks/Zustand/useActiveMobilePanelStore'
+import { useMobileMenuClassStore } from '../../../hooks/Zustand/useMobileMenuClassStore'
 
 export default function MobileViewButton() {
   // Get the number of currently selected books

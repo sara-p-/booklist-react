@@ -1,11 +1,11 @@
 import { DefaultValuesType } from '../../../../global/types'
 import { useActiveMobilePanelStore } from '../../../../hooks/Zustand/useActiveMobilePanelStore'
 import { useSettingsStore } from '../../../../hooks/Zustand/useSettingsStore'
-import MobileButtons from '../../MobileMenuComponents/MobileButtons/MobileButtons'
-import MobileContent from '../../MobileMenuComponents/MobileContent/MobileContent'
-import MobileHeader from '../../MobileMenuComponents/MobileHeader/MobileHeader'
-import MobilePanel from '../../MobileMenuComponents/MobilePanel/MobilePanel'
-import MobilePanelButton from '../../MobileMenuComponents/MobilePanelButton/MobilePanelButton'
+import MobileButtons from '../../../MobileMenuComponents/MobileButtons/MobileButtons'
+import MobileContent from '../../../MobileMenuComponents/MobileContent/MobileContent'
+import MobileHeader from '../../../MobileMenuComponents/MobileHeader/MobileHeader'
+import MobilePanel from '../../../MobileMenuComponents/MobilePanel/MobilePanel'
+import MobilePanelButton from '../../../MobileMenuComponents/MobilePanelButton/MobilePanelButton'
 
 export default function OptionsPanel() {
   // Grab the settings so that we can loop through them and create a button for each one

@@ -5,7 +5,8 @@
   left: 0;
   bottom: 0;
   display: none;
-  z-index: 2;
+  z-index: 3;
+  pointer-events: none;
   border-top: 3px solid var(--primary);
   @media only screen and (min-width: 768px) {
     display: flex;
@@ -45,5 +46,29 @@
       background-color: var(--secondary);
       color: var(--primary);
     }
+  }
+}
+
+/* Mobile Buttons */
+.mobile.box {
+  display: flex;
+  height: 100%;
+  max-width: 100%;
+  align-items: flex-end;
+}
+
+.mobile .wrapper {
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.mobile .button {
+  background-color: var(--primary);
+  color: var(--secondary);
+  border: none;
+  pointer-events: auto;
+  &:hover {
+    background-color: var(--secondary);
+    color: var(--primary);
   }
 }
