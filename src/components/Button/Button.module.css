@@ -60,6 +60,8 @@
 .mobile .wrapper {
   padding: 1rem;
   gap: 1rem;
+  background-color: var(--secondary);
+  border-top: var(--border-thin);
 }
 
 .mobile .button {
