@@ -1,0 +1,33 @@
+.tagBox {
+  width: 100%;
+  &:has(.mobile-tag:disabled) {
+    display: none;
+  }
+  .tag {
+    position: absolute;
+    left: 0;
+    opacity: 0;
+  }
+  .label {
+    padding: 16px;
+    color: var(--primary);
+    background-color: var(--secondary);
+    cursor: pointer;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    border-bottom: 3px solid var(--primary);
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 1;
+    margin: 0;
+    &:hover,
+    &.active {
+      background-color: var(--hover);
+    }
+  }
+  .tag:checked + .label {
+    background-color: var(--primary);
+    color: var(--secondary);
+  }
+}

@@ -7,6 +7,7 @@ import ViewPanel from '../MobileMenu/MobilePanels/ViewPanel/ViewPanel'
 import SortPanel from '../MobileMenu/MobilePanels/SortPanel/SortPanel'
 import AuthorPanel from '../MobileMenu/MobilePanels/AuthorPanel/AuthorPanel'
 import SeriesPanel from '../MobileMenu/MobilePanels/SeriesPanel/SeriesPanel'
+import TagsPanel from '../MobileMenu/MobilePanels/TagsPanel/TagsPanel'
 
 export default function NewMobileMenu() {
   // Get the isActive state from the Zustand store to toggle the active class on the entire mobile menu
@@ -21,6 +22,7 @@ export default function NewMobileMenu() {
       <SortPanel />
       <AuthorPanel />
       <SeriesPanel />
+      <TagsPanel />
     </div>
   )
 }
