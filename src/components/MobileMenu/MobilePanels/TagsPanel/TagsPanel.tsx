@@ -4,10 +4,9 @@ import MobileContent from '../../../MobileMenuComponents/MobileContent/MobileCon
 import MobileButtons from '../../../MobileMenuComponents/MobileButtons/MobileButtons'
 import { useSettingsStore } from '../../../../hooks/Zustand/useSettingsStore'
 import { useDataStore } from '../../../../hooks/Zustand/useDataStore'
-// import { useEffect, useState } from 'react'
 import { filterTags } from '../../../../utils/filter-utils'
 import MobileTag from '../../../MobileMenuComponents/MobileTag/MobileTag'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Button from '../../../Button/Button'
 
 export default function SeriesPanel() {
@@ -17,19 +16,21 @@ export default function SeriesPanel() {
   const [currentValue, setCurrentValue] = useState<string[]>([])
   // Get the data from the store
   const data = useDataStore((state) => state.data)
-  // Create the radio buttons for the panel based on the data object
+  // Create the array that will be looped through to create the tags (checkboxes)
   const tags = filterTags(data)
 
   function handleTagChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.currentTarget.value
-    console.log(value)
     // update the tags array with the new tag if it's not already in the array, else remove it
+    // I'm using useState along with the settings object because when I tried to use just the settings object, the checkbox wasn't "checking" in sync with the click.
     if (!settings.tags.includes(value)) {
+      setCurrentValue((prev) => [...prev, value])
       setSettings((settings) => ({
         ...settings,
         tags: [...settings.tags, value],
       }))
     } else {
+      setCurrentValue((prev) => prev.filter((tag) => tag !== value))
       setSettings((settings) => ({
         ...settings,
         tags: settings.tags.filter((tag) => tag !== value),
@@ -37,14 +38,11 @@ export default function SeriesPanel() {
     }
   }
 
+  // Clear/reset all the tags
   function handleClearTags() {
     setSettings((settings) => ({ ...settings, tags: [] }))
+    setCurrentValue([])
   }
-
-  useEffect(() => {
-    setCurrentValue(settings.tags)
-    console.log(settings.tags)
-  }, [settings.tags])
 
   return (
     <MobilePanel title='tags'>
