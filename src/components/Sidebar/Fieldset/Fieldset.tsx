@@ -1,4 +1,4 @@
-import './Fieldset.css'
+import fieldsetStyles from './Fieldset.module.css'
 
 type FieldsetProps = {
   legend: string
@@ -7,9 +7,9 @@ type FieldsetProps = {
 
 export default function Fieldset({ legend, children }: FieldsetProps) {
   return (
-    <fieldset>
-      <legend>{legend}</legend>
-      <div className='fieldset-content'>{children}</div>
+    <fieldset className={fieldsetStyles.fieldset}>
+      <legend className={fieldsetStyles.legend}>{legend}</legend>
+      <div className={fieldsetStyles.content}>{children}</div>
     </fieldset>
   )
 }

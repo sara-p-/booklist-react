@@ -5,5 +5,5 @@ interface MobileContentProps {
 }
 
 export default function MobileContent({ children }: MobileContentProps) {
-  return <div className={panelContentStyles.wrapper}>{children}</div>
+  return <fieldset className={panelContentStyles.fieldset}>{children}</fieldset>
 }

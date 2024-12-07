@@ -1,4 +1,4 @@
-fieldset {
+.fieldset {
   appearance: none;
   border: none;
   padding: 0;
@@ -9,7 +9,7 @@ fieldset {
   }
 }
 
-legend {
+.legend {
   width: 100%;
   background: var(--primary);
   color: var(--secondary);
@@ -21,7 +21,7 @@ legend {
   font-size: 1.25rem;
 }
 
-.fieldset-content {
+.content {
   padding: 0 16px;
   margin-bottom: 16px;
 }

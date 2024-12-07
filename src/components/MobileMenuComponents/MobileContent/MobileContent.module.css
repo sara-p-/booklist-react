@@ -1,8 +1,11 @@
-.wrapper {
+.fieldset {
   height: 100%;
   width: 100%;
   overflow: scroll;
   position: relative;
   box-sizing: border-box;
+  padding: 0;
   padding-bottom: 145px;
+  margin: 0;
+  border: none;
 }

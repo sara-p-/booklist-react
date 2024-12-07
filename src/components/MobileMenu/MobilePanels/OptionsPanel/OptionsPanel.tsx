@@ -20,6 +20,18 @@ export default function OptionsPanel() {
     console.log(key)
   }
 
+  function listSelectedValues(key: string) {
+    if (key === 'tags' && settings.tags.length > 0) {
+      return settings.tags.length.toString()
+    }
+
+    if (String(settings[key as keyof DefaultValuesType]) === '') {
+      return 'none'
+    } else {
+      return String(settings[key as keyof DefaultValuesType])
+    }
+  }
+
   return (
     <MobilePanel title='options'>
       <MobileHeader title='options' />
@@ -30,11 +42,7 @@ export default function OptionsPanel() {
               key={key}
               title={key}
               onClick={() => handleButtonClick(key)}
-              value={
-                String(settings[key as keyof DefaultValuesType]) === ''
-                  ? 'none'
-                  : String(settings[key as keyof DefaultValuesType])
-              }
+              value={listSelectedValues(key)}
             />
           )
         })}

@@ -24,6 +24,8 @@ export function filterTags(books: BookType[]) {
     : []
   // Make an array of unique tags
   const uniqueTags = removeDuplicates(flattenedTagStringArray)
+  // Sort the array alphabetically
+  uniqueTags.sort()
 
   return uniqueTags
 }
