@@ -17,7 +17,6 @@ export default function OptionsPanel() {
 
   function handleButtonClick(key: string) {
     setActivePanel(key)
-    console.log(key)
   }
 
   function listSelectedValues(key: string) {

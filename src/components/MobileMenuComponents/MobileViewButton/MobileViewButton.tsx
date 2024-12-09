@@ -9,7 +9,6 @@ export default function MobileViewButton() {
   const selectedBooks = useBookInfo()
   const selectedBooksCount = selectedBooks.books.length
   // Get the active Panel so that we can set it to null when the button is clicked
-  const activePanel = useActiveMobilePanelStore((state) => state.activePanel)
   const setActivePanel = useActiveMobilePanelStore(
     (state) => state.setActivePanel
   )
@@ -19,7 +18,6 @@ export default function MobileViewButton() {
   function handleClick() {
     setActivePanel(null)
     setIsActive(false)
-    console.log(activePanel)
   }
 
   return <Button onClick={handleClick}>view {selectedBooksCount} books</Button>
