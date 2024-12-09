@@ -1,17 +1,20 @@
-import MobilePanel from '../../../MobileMenuComponents/MobilePanel/MobilePanel'
-import MobileHeader from '../../../MobileMenuComponents/MobileHeader/MobileHeader'
-import MobileContent from '../../../MobileMenuComponents/MobileContent/MobileContent'
-import MobileButtons from '../../../MobileMenuComponents/MobileButtons/MobileButtons'
-import { useSettingsStore } from '../../../../hooks/Zustand/useSettingsStore'
-import { useDataStore } from '../../../../hooks/Zustand/useDataStore'
-import { filterTags } from '../../../../utils/filter-utils'
-import MobileTag from '../../../MobileMenuComponents/MobileTag/MobileTag'
-import { useState } from 'react'
-import Button from '../../../Button/Button'
+import MobilePanel from '../MobileMenuComponents/MobilePanel/MobilePanel'
+import MobileHeader from '../MobileMenuComponents/MobileHeader/MobileHeader'
+import MobileContent from '../MobileMenuComponents/MobileContent/MobileContent'
+import MobileButtons from '../MobileMenuComponents/MobileButtons/MobileButtons'
+import { useSettingsStore } from '../../hooks/Zustand/useSettingsStore'
+import { useDataStore } from '../../hooks/Zustand/useDataStore'
+import { filterTags } from '../../utils/filter-utils'
+import MobileTag from '../MobileMenuComponents/MobileTag/MobileTag'
+import { useEffect, useState, useCallback } from 'react'
+import Button from '../Button/Button'
+import { useResetButtonStore } from '../../hooks/Zustand/useResetButtonStore'
 
 export default function SeriesPanel() {
   const settings = useSettingsStore((state) => state.settings)
   const setSettings = useSettingsStore((state) => state.setSettings)
+  // Get the reset button state from the Zustand store
+  const resetButton = useResetButtonStore((state) => state.resetButton)
   // Create a state to hold the checked value
   const [currentValue, setCurrentValue] = useState<string[]>([])
   // Get the data from the store
@@ -39,10 +42,21 @@ export default function SeriesPanel() {
   }
 
   // Clear/reset all the tags
-  function handleClearTags() {
+  const handleClearTags = useCallback(() => {
     setSettings((settings) => ({ ...settings, tags: [] }))
     setCurrentValue([])
-  }
+  }, [setSettings])
+
+  // useEffect to update the tags based on the settings object. This comes into play if the tags are set/reset from the sidebar instead of the mobile menu.
+  useEffect(() => {
+    setCurrentValue(settings.tags)
+  }, [settings.tags])
+  // useEffect to clear the tags when any reset button is clicked
+  useEffect(() => {
+    if (resetButton) {
+      handleClearTags()
+    }
+  }, [resetButton, handleClearTags])
 
   return (
     <MobilePanel title='tags'>

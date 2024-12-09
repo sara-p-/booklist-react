@@ -1,9 +1,9 @@
-import MobilePanel from '../../../MobileMenuComponents/MobilePanel/MobilePanel'
-import MobileHeader from '../../../MobileMenuComponents/MobileHeader/MobileHeader'
-import MobileContent from '../../../MobileMenuComponents/MobileContent/MobileContent'
-import MobileButtons from '../../../MobileMenuComponents/MobileButtons/MobileButtons'
-import MobileRadioButton from '../../MobileRadioButton/MobileRadioButton'
-import { useSettingsStore } from '../../../../hooks/Zustand/useSettingsStore'
+import MobilePanel from '../MobileMenuComponents/MobilePanel/MobilePanel'
+import MobileHeader from '../MobileMenuComponents/MobileHeader/MobileHeader'
+import MobileContent from '../MobileMenuComponents/MobileContent/MobileContent'
+import MobileButtons from '../MobileMenuComponents/MobileButtons/MobileButtons'
+import MobileRadioButton from '../MobileMenuComponents/MobileRadioButton/MobileRadioButton'
+import { useSettingsStore } from '../../hooks/Zustand/useSettingsStore'
 
 export default function ThemePanel() {
   const settings = useSettingsStore((state) => state.settings)

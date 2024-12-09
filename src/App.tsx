@@ -5,9 +5,8 @@ import Sidebar from './components/Sidebar/Sidebar/Sidebar'
 
 import Main from './components/Main/Main'
 // import { useDialogRefStore } from './hooks/Zustand/useDialogRefStore'
-import MobileMenu from './components/MobileMenu/MobileMenu/MobileMenu'
 import Header from './components/Header/Header'
-import NewMobileMenu from './components/NewMobileMenu/NewMobileMenu'
+import MobileMenu from './components/MobileMenu/MobileMenu'
 
 function App() {
   // Create a state for the menu active class
@@ -27,7 +26,7 @@ function App() {
       <Main />
       {/* <Dialog ref={dialogRef} bookId={currentBook} /> */}
       {/* <MobileMenu /> */}
-      <NewMobileMenu />
+      <MobileMenu />
     </div>
   )
 }
