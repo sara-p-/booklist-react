@@ -22,7 +22,7 @@ export default function ResetButton() {
   }
 
   return (
-    <ButtonBox className='reset-box'>
+    <ButtonBox>
       <Button className='reset' onClick={handleClick}>
         reset
       </Button>

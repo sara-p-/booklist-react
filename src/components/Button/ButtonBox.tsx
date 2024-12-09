@@ -2,13 +2,13 @@ import buttonStyles from './Button.module.css'
 
 type ButtonBoxProps = {
   children: React.ReactNode
-  isMobile?: boolean
+  className?: string
 }
 
-export default function ButtonBox({ children, isMobile }: ButtonBoxProps) {
+export default function ButtonBox({ children, className }: ButtonBoxProps) {
   // If a className is passed in, add it to the box
-  const boxClassName = isMobile
-    ? `${buttonStyles.box} ${buttonStyles.mobile}`
+  const boxClassName = className
+    ? `${buttonStyles.box} ${buttonStyles[className]}`
     : buttonStyles.box
 
   return (

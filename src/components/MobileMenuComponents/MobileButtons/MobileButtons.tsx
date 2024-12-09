@@ -7,7 +7,7 @@ interface MobileButtonsProps {
 
 export default function MobileButtons({ children }: MobileButtonsProps) {
   return (
-    <ButtonBox isMobile>
+    <ButtonBox className='mobile'>
       <MobileViewButton />
       {children}
     </ButtonBox>
