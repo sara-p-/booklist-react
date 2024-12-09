@@ -3,11 +3,11 @@ import { useResetButtonStore } from '../../../hooks/Zustand/useResetButtonStore'
 import { useSettingsStore } from '../../../hooks/Zustand/useSettingsStore'
 import ButtonBox from '../../Button/ButtonBox'
 import Button from '../../Button/Button'
+import { DEFAULT_VALUES } from '../../../global/global-variables'
 
 export default function ResetButton() {
   // Get the settings from the Zustand store
   const setSettings = useSettingsStore((state) => state.setSettings)
-  const defaultSettings = useSettingsStore((state) => state.defaultSettings)
   // Get the resetButton state from the Zustand store
   const setResetButton = useResetButtonStore((state) => state.setResetButton)
   // Is the 'order' toggle checked? If so, reset the order to default
@@ -16,7 +16,7 @@ export default function ResetButton() {
   )
 
   function handleClick() {
-    setSettings(defaultSettings)
+    setSettings(DEFAULT_VALUES)
     setResetButton(true)
     setIsOrderChecked(false)
   }
