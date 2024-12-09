@@ -14,7 +14,7 @@ header {
   }
 }
 
-.title-box {
+.titleBox {
   width: auto;
   height: auto;
   display: flex;
@@ -35,7 +35,7 @@ header {
   }
 }
 
-.mobile-menu-button {
+.button {
   font-size: 28px;
   padding: 0;
   margin: 0;

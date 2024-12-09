@@ -1,4 +1,4 @@
-import './Header.css'
+import headerStyles from './Header.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBook, faBars } from '@fortawesome/free-solid-svg-icons'
 import { useMobileMenuClassStore } from '../../hooks/Zustand/useMobileMenuClassStore'
@@ -19,11 +19,11 @@ export default function Header() {
 
   return (
     <header>
-      <div className='title-box'>
-        <h1 className='title'>
+      <div className={headerStyles.titleBox}>
+        <h1 className={headerStyles.title}>
           <FontAwesomeIcon className='icon' icon={faBook} /> Booklist
         </h1>
-        <button onClick={handleMenuButtonClick}>
+        <button className={headerStyles.button} onClick={handleMenuButtonClick}>
           <FontAwesomeIcon className='mobile-menu-icon' icon={faBars} />
         </button>
       </div>
