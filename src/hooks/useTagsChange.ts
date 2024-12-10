@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useSettingsStore } from './Zustand/useSettingsStore'
+import { useResetButtonStore } from './Zustand/useResetButtonStore'
 
 export default function useTagsChange() {
   // Create a state to hold the checked value
@@ -7,6 +8,8 @@ export default function useTagsChange() {
   // Get the settings from the Zustand store
   const settings = useSettingsStore((state) => state.settings)
   const setSettings = useSettingsStore((state) => state.setSettings)
+  // Get the resetButton state from the Zustand store
+  const resetButton = useResetButtonStore((state) => state.resetButton)
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.currentTarget.value
@@ -27,5 +30,12 @@ export default function useTagsChange() {
     setCurrentValue(settings.tags)
   }, [settings.tags])
 
-  return { currentValue, setCurrentValue, handleChange }
+  // Reset the checked state when the reset button is clicked
+  useEffect(() => {
+    if (resetButton) {
+      setCurrentValue([])
+    }
+  }, [resetButton])
+
+  return { currentValue, handleChange }
 }
