@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useSettingsStore } from './Zustand/useSettingsStore'
 import { useResetButtonStore } from './Zustand/useResetButtonStore'
 
@@ -13,15 +13,21 @@ export default function useTagsChange() {
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.currentTarget.value
-    let newTags = [...settings.tags]
-    if (newTags.includes(value)) {
-      newTags = newTags.filter((tag) => tag !== value)
-      setCurrentValue((prev) => prev.filter((tag) => tag !== value))
-    } else {
-      newTags = [...settings.tags, value]
+    // update the tags array with the new tag if it's not already in the array, else remove it
+    // I'm using useState along with the settings object because when I tried to use just the settings object, the checkbox wasn't "checking" in sync with the click.
+    if (!settings.tags.includes(value)) {
       setCurrentValue((prev) => [...prev, value])
+      setSettings((settings) => ({
+        ...settings,
+        tags: [...settings.tags, value],
+      }))
+    } else {
+      setCurrentValue((prev) => prev.filter((tag) => tag !== value))
+      setSettings((settings) => ({
+        ...settings,
+        tags: settings.tags.filter((tag) => tag !== value),
+      }))
     }
-    setSettings({ ...settings, tags: newTags })
   }
 
   // Update the tags to match the mobile tag settings
@@ -37,5 +43,11 @@ export default function useTagsChange() {
     }
   }, [resetButton])
 
-  return { currentValue, handleChange }
+  // Clear the tags when the reset button is clicked
+  const handleClearTags = useCallback(() => {
+    setSettings((settings) => ({ ...settings, tags: [] }))
+    setCurrentValue([])
+  }, [setSettings])
+
+  return { currentValue, handleChange, handleClearTags }
 }
