@@ -12,8 +12,9 @@ export const useOrderToggleStore = create<OrderToggleState>((set) => ({
     const settingsStore = useSettingsStore.getState()
     const settings = settingsStore.settings
     const setSettings = settingsStore.setSettings
+    const orderValue = isOrderChecked ? 'desc' : 'asc'
 
     set({ isOrderChecked })
-    setSettings({ ...settings, order: isOrderChecked })
+    setSettings({ ...settings, order: orderValue })
   },
 }))

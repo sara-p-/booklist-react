@@ -4,10 +4,14 @@ import MobileContent from '../MobileMenuComponents/MobileContent/MobileContent'
 import MobileButtons from '../MobileMenuComponents/MobileButtons/MobileButtons'
 import MobileRadioButton from '../MobileMenuComponents/MobileRadioButton/MobileRadioButton'
 import useFilters from '../../hooks/useFilters'
+import useLocalReset from '../../hooks/useLocalReset'
+import Button from '../Button/Button'
 
 export default function AuthorPanel() {
   const { currentValue, handleFilterChange, filterOptions } =
     useFilters('author')
+  // Get the local reset hook
+  const { handleLocalReset } = useLocalReset('author')
 
   return (
     <MobilePanel title='author'>
@@ -23,7 +27,9 @@ export default function AuthorPanel() {
           />
         ))}
       </MobileContent>
-      <MobileButtons />
+      <MobileButtons>
+        <Button onClick={handleLocalReset}>reset author</Button>
+      </MobileButtons>
     </MobilePanel>
   )
 }

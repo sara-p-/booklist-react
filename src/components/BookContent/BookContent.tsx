@@ -9,40 +9,43 @@ type BookContentProps = {
 }
 
 export function BookContent({ book }: BookContentProps) {
-  const [lengthClass, setLengthClass] = useState('')
-  const [yearClass, setYearClass] = useState('')
+  const [contentClass, setContentClass] = useState('')
   // Pull the sort settings from the Zustand Settings store
   const sortSettings = useSettingsStore((state) => state.settings.sort)
-  // When the sort setting updates to length, show that item in the book List View
+
+  // Set the content class based on the selected sort option
   useEffect(() => {
-    if (sortSettings === 'length') {
-      setLengthClass('active')
-    } else {
-      setLengthClass('')
-    }
-    if (sortSettings === 'year') {
-      setYearClass('active')
-    } else {
-      setYearClass('')
-    }
-  }, [sortSettings])
+    setContentClass(`sort-${sortSettings}`)
+    console.log(contentClass)
+  }, [sortSettings, contentClass])
 
   return (
-    <div className={`${bookStyles.content} ${styles.content}`}>
+    <div
+      className={`${bookStyles.content} ${styles.content} ${styles[contentClass]}`}
+    >
       <div className={styles.info}>
         <h3 className={styles.title}>{book.title}</h3>
         <h4 className={styles.author}>{book.author}</h4>
         <hr className={styles.divider} />
-        <p className={`${styles.infoItem}`} data-label='series'>
+        <p
+          className={`${styles.infoItem} ${styles.series}`}
+          data-label='series'
+        >
           <strong>series:</strong> {book.series}
         </p>
-        <p className={`${styles.infoItem}`} data-label='number'>
+        <p
+          className={`${styles.infoItem} ${styles.number}`}
+          data-label='number'
+        >
           <strong>book #:</strong> {book.number}
         </p>
-        <p className={`${styles.infoItem} ${yearClass}`} data-label='year'>
+        <p className={`${styles.infoItem} ${styles.year}`} data-label='year'>
           <strong>year:</strong> {book.year}
         </p>
-        <p className={`${styles.infoItem} ${lengthClass}`} data-label='length'>
+        <p
+          className={`${styles.infoItem} ${styles.length}`}
+          data-label='length'
+        >
           <strong>length:</strong> {book.length} pages
         </p>
         <p

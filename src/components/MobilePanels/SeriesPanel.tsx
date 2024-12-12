@@ -4,10 +4,14 @@ import MobileContent from '../MobileMenuComponents/MobileContent/MobileContent'
 import MobileButtons from '../MobileMenuComponents/MobileButtons/MobileButtons'
 import MobileRadioButton from '../MobileMenuComponents/MobileRadioButton/MobileRadioButton'
 import useFilters from '../../hooks/useFilters'
+import useLocalReset from '../../hooks/useLocalReset'
+import Button from '../Button/Button'
 
 export default function SeriesPanel() {
   const { currentValue, handleFilterChange, filterOptions } =
     useFilters('series')
+  // Get the local reset hook
+  const { handleLocalReset } = useLocalReset('series')
 
   return (
     <MobilePanel title='series'>
@@ -23,7 +27,9 @@ export default function SeriesPanel() {
           />
         ))}
       </MobileContent>
-      <MobileButtons />
+      <MobileButtons>
+        <Button onClick={handleLocalReset}>reset series</Button>
+      </MobileButtons>
     </MobilePanel>
   )
 }

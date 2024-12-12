@@ -6,12 +6,15 @@ import MobileTag from '../MobileMenuComponents/MobileTag/MobileTag'
 import Button from '../Button/Button'
 import useTagsChange from '../../hooks/useTagsChange'
 import useTags from '../../hooks/useTags'
+import useLocalReset from '../../hooks/useLocalReset'
 
 export default function SeriesPanel() {
   // Get all the tags and whether they are disabled or not
   const tags = useTags()
   // Get the tags change hook
-  const { currentValue, handleChange, handleClearTags } = useTagsChange()
+  const { currentValue, handleChange } = useTagsChange()
+  // Get the local reset hook
+  const { handleLocalReset } = useLocalReset('tags')
 
   return (
     <MobilePanel title='tags'>
@@ -27,7 +30,7 @@ export default function SeriesPanel() {
         ))}
       </MobileContent>
       <MobileButtons>
-        <Button onClick={handleClearTags}>clear</Button>
+        <Button onClick={handleLocalReset}>reset tags</Button>
       </MobileButtons>
     </MobilePanel>
   )

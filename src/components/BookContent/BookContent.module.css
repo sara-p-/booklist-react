@@ -33,17 +33,35 @@
   border: none;
   margin: 0 0 8px 0;
 }
+
 .infoItem {
   display: none;
   margin-bottom: 8px;
   line-height: 1;
-  &.hide {
+  /* &.hide {
     display: none;
-  }
-  @media only screen and (min-width: 640px) {
+  } */
+  /* @media only screen and (min-width: 640px) {
+    display: block;
+  } */
+}
+.series {
+  display: block;
+}
+.number {
+  display: block;
+}
+.sort-length {
+  .length {
     display: block;
   }
 }
+.sort-year {
+  .year {
+    display: block;
+  }
+}
+
 .infoItem.rating {
   display: block;
   @media only screen and (min-width: 1024px) {

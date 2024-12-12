@@ -10,7 +10,7 @@ type BookProps = {
 }
 
 export default function Book({ book, handleOpenDialog }: BookProps) {
-  const { listClass } = useListClassStore((state) => state)
+  const listClass = useListClassStore((state) => state.listClass)
   return (
     <button
       className={`${listClass ? styles.list : ''} ${styles.button} `}

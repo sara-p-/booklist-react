@@ -1,6 +1,8 @@
 import { DefaultValuesType } from '../../global/types'
+import useGlobalReset from '../../hooks/useGlobalReset'
 import { useActiveMobilePanelStore } from '../../hooks/Zustand/useActiveMobilePanelStore'
 import { useSettingsStore } from '../../hooks/Zustand/useSettingsStore'
+import Button from '../Button/Button'
 import MobileButtons from '../MobileMenuComponents/MobileButtons/MobileButtons'
 import MobileContent from '../MobileMenuComponents/MobileContent/MobileContent'
 import MobileHeader from '../MobileMenuComponents/MobileHeader/MobileHeader'
@@ -14,6 +16,8 @@ export default function OptionsPanel() {
   const setActivePanel = useActiveMobilePanelStore(
     (state) => state.setActivePanel
   )
+  // Get the global reset hook
+  const { handleGlobalReset } = useGlobalReset()
 
   function handleButtonClick(key: string) {
     setActivePanel(key)
@@ -46,7 +50,9 @@ export default function OptionsPanel() {
           )
         })}
       </MobileContent>
-      <MobileButtons></MobileButtons>
+      <MobileButtons>
+        <Button onClick={handleGlobalReset}>reset all</Button>
+      </MobileButtons>
     </MobilePanel>
   )
 }
