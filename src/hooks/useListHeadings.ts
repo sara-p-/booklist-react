@@ -12,7 +12,7 @@ export default function useListHeadings(books: BookType[]) {
   const sortSetting = useSettingsStore((state) => state.settings.sort)
   // Set the list headings when the sort setting changes
   useEffect(() => {
-    setListHeadings(filterListHeadings(books, sortSetting))
+    setListHeadings(filterListHeadings(books, sortSetting) ?? [])
   }, [sortSetting, books, setListHeadings])
 
   return { listHeadings, sortSetting }

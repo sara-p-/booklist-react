@@ -16,7 +16,6 @@ export function BookContent({ book }: BookContentProps) {
   // Set the content class based on the selected sort option
   useEffect(() => {
     setContentClass(`sort-${sortSettings}`)
-    console.log(contentClass)
   }, [sortSettings, contentClass])
 
   return (

@@ -1,5 +1,6 @@
 import { BookType } from '../global/types'
 import { removeDuplicates } from './array-utils'
+// import { getStepsByNumbers } from './utilities'
 
 // Function to filter an array by a key and value
 export function filterArray(
@@ -71,21 +72,48 @@ export function filterTagsArray(books: BookType[], tags: string[]) {
   return newBooksArray
 }
 
+// export function filterListHeadingsByLength(books: BookType[]) {
+//   // get the longest book length and the shortest book length
+
+// }
+
 export function filterListHeadings(books: BookType[], sortSetting: string) {
-  let firstBooks: { sort: string; id: string }[] = []
+  // Make an array of just the sort value and the id
+  const array = books.map((b) => ({
+    sort: (b[sortSetting as keyof BookType] as string) ?? '',
+    id: b.id,
+  }))
+
+  // if (sortSetting === 'length') {
+  //   // // turn all the lengths into numbers
+  //   // const lengthArray = array.map((book) => {
+  //   //   return {
+  //   //     sort: Number(book.sort),
+  //   //     id: book.id,
+  //   //   }
+  //   // })
+  //   // // Get the steps to measure all of the book lengths by 100
+  //   // const pageLengths = lengthArray.map((book) => book.sort)
+  //   // const steps = getStepsByNumbers(pageLengths, 100)
+  //   // // find the books that have a length closest to the steps
+  //   // const filteredLengthArray = steps.map((step, index) => {
+  //   //   return lengthArray.filter(
+  //   //     (book) => book.sort <= step && book.sort >= steps[index + 1]
+  //   //   )
+  //   // })
+  //   // // Get the first book of each group
+  //   // const firstBooks = filteredLengthArray.map((group) => group[0])
+  //   // console.log({ filteredLengthArray })
+  //   // return firstBooks
+  // }
+
   if (sortSetting !== 'title' && sortSetting !== 'length') {
-    // Make an array of just the series and remove the duplicates
-    const array = books.map((b) => ({
-      sort: (b[sortSetting as keyof BookType] as string) ?? '',
-      id: b.id,
-    }))
-    // filter the array to only include the first book of each series
-    firstBooks = array.filter(
+    const firstBooks = array.filter(
       (book, index, array) =>
         array.findIndex((t) => t.sort === book.sort) === index
     )
+    return firstBooks
   }
-  return firstBooks
 }
 
 // Function to filter the book description by the markdown tags

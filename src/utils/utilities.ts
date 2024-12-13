@@ -39,3 +39,21 @@ export function getNextBook(
     }
   }
 }
+
+// Function to create a stepped array of numbers based on the length of the books
+export function getStepsByNumbers(numbers: number[], step: number) {
+  const result = []
+
+  for (let i = 0; i < numbers.length; i++) {
+    const steps = Math.floor(numbers[i] / step)
+    const fullSteps = steps * 100
+    result.push(fullSteps)
+  }
+
+  // remove duplicate numbers
+  const uniqueResult = [...new Set(result)]
+
+  const finalSteps = [uniqueResult[0] + 100, ...uniqueResult]
+
+  return finalSteps
+}
