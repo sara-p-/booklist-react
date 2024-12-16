@@ -1,9 +1,9 @@
 import { create } from 'zustand'
 
 type listHeadingType = {
-  listHeadings: Array<{ sort: string | undefined; id: string }>
+  listHeadings: Array<{ sort: string | undefined; id: string | undefined }>
   setListHeadings: (
-    listHeadings: Array<{ sort: string | undefined; id: string }>
+    listHeadings: Array<{ sort: string | undefined; id: string | undefined }>
   ) => void
 }
 

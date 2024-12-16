@@ -41,7 +41,11 @@ export function getNextBook(
 }
 
 // Function to create a stepped array of numbers based on the length of the books
-export function getStepsByNumbers(numbers: number[], step: number) {
+export function getStepsByNumbers(
+  numbers: number[],
+  step: number,
+  order: 'asc' | 'desc'
+) {
   const result = []
 
   for (let i = 0; i < numbers.length; i++) {
@@ -53,7 +57,22 @@ export function getStepsByNumbers(numbers: number[], step: number) {
   // remove duplicate numbers
   const uniqueResult = [...new Set(result)]
 
-  const finalSteps = [uniqueResult[0] + 100, ...uniqueResult]
+  if (order === 'asc') {
+    return [...uniqueResult, uniqueResult[uniqueResult.length - 1] + 100]
+  }
 
-  return finalSteps
+  return [uniqueResult[0] + 100, ...uniqueResult]
+}
+
+// Function to find the number that is closest to the target number but not greater than the target number
+export function findClosestNumber(
+  target: number,
+  numbers: { length: number; id: string }[]
+) {
+  return numbers.reduce((prev, curr) =>
+    Math.abs(curr.length - target) < Math.abs(prev.length - target) &&
+    curr.length <= target
+      ? curr
+      : prev
+  )
 }

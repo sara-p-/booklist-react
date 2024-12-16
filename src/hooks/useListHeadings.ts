@@ -1,5 +1,8 @@
 import { useEffect } from 'react'
-import { filterListHeadings } from '../utils/filter-utils'
+import {
+  filterListHeadings,
+  filterListHeadingsByLength,
+} from '../utils/filter-utils'
 import { useListHeadingStore } from './Zustand/useListHeadingStore'
 import { useSettingsStore } from './Zustand/useSettingsStore'
 import { BookType } from '../global/types'
@@ -9,11 +12,18 @@ export default function useListHeadings(books: BookType[]) {
   const setListHeadings = useListHeadingStore((state) => state.setListHeadings)
   const listHeadings = useListHeadingStore((state) => state.listHeadings)
   // Get the settings from the Zustand store
-  const sortSetting = useSettingsStore((state) => state.settings.sort)
+  const settings = useSettingsStore((state) => state.settings)
+  const sort = settings.sort
+  const order = settings.order
   // Set the list headings when the sort setting changes
   useEffect(() => {
-    setListHeadings(filterListHeadings(books, sortSetting) ?? [])
-  }, [sortSetting, books, setListHeadings])
+    if (sort !== 'length' && sort !== 'title') {
+      setListHeadings(filterListHeadings(books, sort) ?? [])
+    }
+    if (sort === 'length') {
+      setListHeadings(filterListHeadingsByLength(books, order))
+    }
+  }, [sort, order, books, setListHeadings])
 
-  return { listHeadings, sortSetting }
+  return { listHeadings, sort }
 }
