@@ -1,6 +1,6 @@
 import { BookType } from '../global/types'
 import { removeDuplicates } from './array-utils'
-import { findClosestNumber, getStepsByNumbers } from './utilities'
+import { findAllNumbersBetween, getStepsByNumbers } from './utilities'
 // import { getStepsByNumbers } from './utilities'
 
 // Function to filter an array by a key and value
@@ -73,11 +73,6 @@ export function filterTagsArray(books: BookType[], tags: string[]) {
   return newBooksArray
 }
 
-// export function filterListHeadingsByLength(books: BookType[]) {
-//   // get the longest book length and the shortest book length
-
-// }
-
 export function filterListHeadings(
   books: BookType[],
   sortSetting: string | undefined
@@ -103,6 +98,7 @@ export function filterListHeadingsByLength(
     return {
       length: Number(book.length),
       id: book.id,
+      title: book.title,
     }
   })
 
@@ -111,16 +107,15 @@ export function filterListHeadingsByLength(
   const steps = getStepsByNumbers(pageLengths, 100, order)
   // For each step, find the book that is closest to the step
   const firstBooks = steps.map((step) => {
-    const closestBook = lengthArray.find(
-      (book) => book.length === findClosestNumber(step, lengthArray).length
-    )
+    const inbetweenBooks = findAllNumbersBetween(step - 100, step, lengthArray)
     return {
       sort: step - 100,
-      id: closestBook?.id,
+      length: inbetweenBooks[0]?.length,
+      id: inbetweenBooks[0]?.id,
+      title: inbetweenBooks[0]?.title,
     }
   })
 
-  console.log({ steps })
   return firstBooks
 }
 

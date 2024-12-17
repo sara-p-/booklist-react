@@ -57,11 +57,17 @@ export function getStepsByNumbers(
   // remove duplicate numbers
   const uniqueResult = [...new Set(result)]
 
+  const nonZeroArray = uniqueResult.filter((num) => num !== 0)
+
+  let newArray = [nonZeroArray[0] + 100, ...nonZeroArray]
+
   if (order === 'asc') {
-    return [...uniqueResult, uniqueResult[uniqueResult.length - 1] + 100]
+    newArray = [...nonZeroArray, nonZeroArray[nonZeroArray.length - 1] + 100]
   }
 
-  return [uniqueResult[0] + 100, ...uniqueResult]
+  // console.log({ newArray })
+
+  return newArray
 }
 
 // Function to find the number that is closest to the target number but not greater than the target number
@@ -75,4 +81,17 @@ export function findClosestNumber(
       ? curr
       : prev
   )
+}
+
+// Function to find all numbers between two numbers
+export function findAllNumbersBetween(
+  start: number,
+  end: number,
+  array: { length: number; id: string; title: string }[]
+) {
+  const result = array.filter(
+    (book) => book.length >= start && book.length <= end
+  )
+
+  return result
 }
