@@ -34,5 +34,8 @@ export default function useBookInfo() {
     }
   }, [data, setBooks, settings, setData, resetButton, setResetButton])
 
-  return { books }
+  // Get the number of selected books
+  const numOfSelectedBooks = books.length
+
+  return { books, numOfSelectedBooks }
 }

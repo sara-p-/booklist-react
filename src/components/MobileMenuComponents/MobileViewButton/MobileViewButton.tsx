@@ -6,13 +6,13 @@ import { useMobileMenuClassStore } from '../../../hooks/Zustand/useMobileMenuCla
 
 export default function MobileViewButton() {
   // Get the number of currently selected books
-  const selectedBooks = useBookInfo()
-  const selectedBooksCount = selectedBooks.books.length
+  const { numOfSelectedBooks } = useBookInfo()
+  // const selectedBooksCount = selectedBooks.books.length
   // Get the active Panel so that we can set it to null when the button is clicked
   const setActivePanel = useActiveMobilePanelStore(
     (state) => state.setActivePanel
   )
-  // Clse the entire mobile menu when clicked
+  // Close the entire mobile menu when clicked
   const setIsActive = useMobileMenuClassStore((state) => state.setIsActive)
 
   function handleClick() {
@@ -20,5 +20,5 @@ export default function MobileViewButton() {
     setIsActive(false)
   }
 
-  return <Button onClick={handleClick}>view {selectedBooksCount} books</Button>
+  return <Button onClick={handleClick}>view {numOfSelectedBooks} books</Button>
 }

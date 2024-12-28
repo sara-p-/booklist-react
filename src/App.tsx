@@ -25,7 +25,6 @@ function App() {
       <Sidebar />
       <Main />
       {/* <Dialog ref={dialogRef} bookId={currentBook} /> */}
-      {/* <MobileMenu /> */}
       <MobileMenu />
     </div>
   )
