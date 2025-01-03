@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { simplifyAndSort } from '../utils/array-utils'
-import { useDataStore } from './Zustand/useDataStore'
 import { BookType } from '../global/types'
 import { useResetButtonStore } from './Zustand/useResetButtonStore'
 import { useSettingsStore } from './Zustand/useSettingsStore'
+import useBookInfo from './useBookInfo'
 
 export default function useFilters(filterType: 'series' | 'author') {
   const settings = useSettingsStore((state) => state.settings)
@@ -12,11 +12,11 @@ export default function useFilters(filterType: 'series' | 'author') {
   const [currentValue, setCurrentValue] = useState('')
   // Get the resetButton state from the Zustand store
   const resetButton = useResetButtonStore((state) => state.resetButton)
-  // Get the data from the store
-  const data = useDataStore((state) => state.data)
+  // Get the books from the store
+  const { books } = useBookInfo()
   // Create the radio buttons for the panel based on the data object
   const filterOptions = simplifyAndSort(
-    data.map((book: BookType) => book[filterType])
+    books.map((book: BookType) => book[filterType])
   )
 
   function handleFilterChange(e: React.ChangeEvent<HTMLInputElement>) {
